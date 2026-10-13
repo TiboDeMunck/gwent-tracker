@@ -17,6 +17,7 @@ using DynamicData.Binding;
 using GwentTracker.Localization;
 using GwentTracker.Services;
 using W3SavegameEditor.Core.Savegame;
+using W3SavegameEditor.Core.Savegame.Values;
 using W3SavegameEditor.Core.Savegame.Variables;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
@@ -34,6 +35,7 @@ namespace GwentTracker.ViewModels
         private readonly Translate _t;
         private bool _initialLoadComplete = false;
         private Dictionary<int, int> _summons;
+        private IReadOnlyCollection<Fact> _currentFacts;
         private IReadOnlyDictionary<string, long> _currentFactValues;
         private IReadOnlySet<string> _currentOwnedCardIds;
         private string _activeOpponentProfileId;
@@ -150,6 +152,7 @@ namespace GwentTracker.ViewModels
             Filters = new ObservableCollection<string>();
             _cards = new SourceList<CardViewModel>();
             _allOpponents = new List<GwentOpponentViewModel>();
+            _currentFacts = Array.Empty<Fact>();
             _currentFactValues = new Dictionary<string, long>(StringComparer.Ordinal);
             _currentOwnedCardIds = new HashSet<string>(StringComparer.Ordinal);
             _summons = new Dictionary<int, int>();
@@ -351,6 +354,7 @@ namespace GwentTracker.ViewModels
             return new SaveGameInfo
             {
                 CardCopies = cards,
+                Facts = facts,
                 FactValues = factValues,
                 OpponentProfileId = SaveProfileId.Create(path, facts, factValues)
             };
@@ -455,6 +459,7 @@ namespace GwentTracker.ViewModels
         private void ApplyOpponentSave(SaveGameInfo info)
         {
             _activeOpponentProfileId = info.OpponentProfileId;
+            _currentFacts = info.Facts ?? Array.Empty<Fact>();
             _currentFactValues = info.FactValues ?? new Dictionary<string, long>(StringComparer.Ordinal);
             _currentOwnedCardIds = GwentCardInventory.GetOwnedCardIds(info.CardCopies);
             var overrides = _opponentOverrideStore.Load(_activeOpponentProfileId);
@@ -466,7 +471,10 @@ namespace GwentTracker.ViewModels
                     opponent.Opponent,
                     _currentFactValues,
                     _currentOwnedCardIds);
-                opponent.ApplyState(detected, manualOverride);
+                opponent.ApplyState(
+                    detected,
+                    manualOverride,
+                    GetDetectedCardName(opponent.Opponent, detected));
             }
 
             RefreshOpponentFilter();
@@ -513,11 +521,26 @@ namespace GwentTracker.ViewModels
                     opponent.Opponent,
                     _currentFactValues,
                     _currentOwnedCardIds);
-                opponent.ApplyState(detected, null);
+                opponent.ApplyState(
+                    detected,
+                    null,
+                    GetDetectedCardName(opponent.Opponent, detected));
             }
 
             RefreshOpponentFilter();
             UpdateOpponentSummary();
+        }
+
+        private string GetDetectedCardName(GwentOpponent opponent, bool detected)
+        {
+            if (!detected)
+                return string.Empty;
+
+            var cardId = GwentOpponentRewardResolver.GetCardId(opponent, _currentFacts);
+            if (!GwentCardInventory.TryGetCardIndex(cardId, out var cardIndex))
+                return string.Empty;
+
+            return _cards.Items.FirstOrDefault(card => card.Index == cardIndex)?.Name ?? string.Empty;
         }
 
         private void RefreshOpponentFilter()

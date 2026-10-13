@@ -52,4 +52,23 @@ public class OpponentOverrideStoreTests
         opponent.ApplyState(false, opponent.ManualOverride);
         Assert.True(opponent.Played);
     }
+
+    [Fact]
+    public void CardWonRequiresAutomaticEvidenceAndFollowsTheEffectiveCompletionState()
+    {
+        var opponent = new GwentOpponentViewModel(new GwentOpponent { Id = "gwm-pin-35" });
+
+        opponent.ApplyState(true, null, "Dol Blathanna Scout");
+        Assert.Equal("Dol Blathanna Scout", opponent.CardWon);
+
+        opponent.Played = false;
+        Assert.Equal(string.Empty, opponent.CardWon);
+
+        opponent.ClearManualOverride();
+        Assert.Equal("Dol Blathanna Scout", opponent.CardWon);
+
+        opponent.ApplyState(false, null);
+        opponent.Played = true;
+        Assert.Equal(string.Empty, opponent.CardWon);
+    }
 }
