@@ -24,6 +24,8 @@
       <SubType>Designer</SubType>
     </AvaloniaResource>
     <AvaloniaResource Include="Assets\**" />
+    <EmbeddedResource Include="data\gwent_opponents.yml" />
+    <None Remove="data\gwent_opponents.yml" />
     <Folder Include="Properties" />
   </ItemGroup>
     <ItemGroup>
@@ -63,5 +65,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\W3SavegameEditor\W3SavegameEditor.Core\W3SavegameEditor.Core.csproj" />
+    <TrimmerRootAssembly Include="W3SavegameEditor.Core" />
   </ItemGroup>
 </Project>

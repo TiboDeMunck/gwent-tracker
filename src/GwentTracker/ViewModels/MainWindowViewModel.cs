@@ -15,6 +15,7 @@ using Avalonia.ReactiveUI;
 using DynamicData;
 using DynamicData.Binding;
 using GwentTracker.Localization;
+using GwentTracker.Services;
 using W3SavegameEditor.Core.Savegame;
 using W3SavegameEditor.Core.Savegame.Variables;
 using YamlDotNet.Serialization;
@@ -28,18 +29,26 @@ namespace GwentTracker.ViewModels
         private readonly CultureInfo _cultureInfo;
         private readonly SourceList<CardViewModel> _cards;
         private readonly ReadOnlyObservableCollection<CardViewModel> _filteredCards;
+        private readonly List<GwentOpponentViewModel> _allOpponents;
+        private readonly OpponentOverrideStore _opponentOverrideStore;
         private readonly Translate _t;
         private bool _initialLoadComplete = false;
         private Dictionary<int, int> _summons;
+        private IReadOnlyDictionary<string, long> _currentFactValues;
+        private IReadOnlySet<string> _currentOwnedCardIds;
+        private string _activeOpponentProfileId;
 
         public ReadOnlyObservableCollection<CardViewModel> Cards => _filteredCards;
+        public ObservableCollection<GwentOpponentViewModel> Opponents { get; }
+        public ObservableCollection<string> OpponentStatusFilters { get; }
         public ObservableCollection<MissableInfo> Messages { get; set; }
         public Subject<string> Notifications { get; set; }
         public TimeSpan NotificationDuration => TimeSpan.FromSeconds(5);
         public ReactiveCommand<string, SaveGameInfo> Load { get; set; }
-        public ReactiveCommand<Unit, (IEnumerable<Card>, IEnumerable<MissableInfo>)> LoadCards { get; set; }
+        public ReactiveCommand<Unit, (IEnumerable<Card>, IEnumerable<MissableInfo>, IEnumerable<GwentOpponent>)> LoadCards { get; set; }
         public ReactiveCommand<Unit, Unit> AddFilter { get; set; }
         public ReactiveCommand<string, Unit> RemoveFilter { get; set; }
+        public ReactiveCommand<Unit, Unit> ClearOpponentOverrides { get; set; }
         public ObservableCollection<string> Filters { get; set; }
 
         private ObservableAsPropertyHelper<bool> _loaderVisibility;
@@ -70,6 +79,35 @@ namespace GwentTracker.ViewModels
             set => this.RaiseAndSetIfChanged(ref _filterString, value);
         }
 
+        private string _opponentFilterString;
+        public string OpponentFilterString
+        {
+            get => _opponentFilterString;
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _opponentFilterString, value);
+                RefreshOpponentFilter();
+            }
+        }
+
+        private string _opponentStatusFilter;
+        public string OpponentStatusFilter
+        {
+            get => _opponentStatusFilter;
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _opponentStatusFilter, value);
+                RefreshOpponentFilter();
+            }
+        }
+
+        private string _opponentSummary;
+        public string OpponentSummary
+        {
+            get => _opponentSummary;
+            private set => this.RaiseAndSetIfChanged(ref _opponentSummary, value);
+        }
+
         private string _saveGamePath;
         public string SaveGamePath
         {
@@ -98,14 +136,27 @@ namespace GwentTracker.ViewModels
             set => this.RaiseAndSetIfChanged(ref _dlcProgress, value);
         }
 
-        public MainWindowViewModel(string saveGamePath, TextureInfo textureInfo, IObservable<string> saveDirChanges, CultureInfo cultureInfo)
+        public MainWindowViewModel(
+            string saveGamePath,
+            TextureInfo textureInfo,
+            IObservable<string> saveDirChanges,
+            CultureInfo cultureInfo,
+            OpponentOverrideStore opponentOverrideStore = null)
         {
             _t = new Translate();
             _cultureInfo = cultureInfo;
+            _opponentOverrideStore = opponentOverrideStore ?? new OpponentOverrideStore();
             Activator = new ViewModelActivator();
             Filters = new ObservableCollection<string>();
             _cards = new SourceList<CardViewModel>();
+            _allOpponents = new List<GwentOpponentViewModel>();
+            _currentFactValues = new Dictionary<string, long>(StringComparer.Ordinal);
+            _currentOwnedCardIds = new HashSet<string>(StringComparer.Ordinal);
             _summons = new Dictionary<int, int>();
+            Opponents = new ObservableCollection<GwentOpponentViewModel>();
+            OpponentStatusFilters = new ObservableCollection<string> { "All", "Played", "Not Played" };
+            OpponentStatusFilter = OpponentStatusFilters[0];
+            OpponentSummary = "Completed: 0/96";
             Messages = new ObservableCollection<MissableInfo>();
             Notifications = new Subject<string>();
             BaseGameProgress = new CollectionProgress();
@@ -133,7 +184,7 @@ namespace GwentTracker.ViewModels
             });
             LoadCards.Subscribe(items =>
             {
-                var (cardInfo, missables) = items;
+                var (cardInfo, missables, opponentInfo) = items;
                 var cards = cardInfo as List<Card> ?? cardInfo.ToList();
                 var mapped = cards.Select(c => new CardViewModel(textureInfo)
                 {
@@ -155,6 +206,15 @@ namespace GwentTracker.ViewModels
 
                 Messages.Clear();
                 Messages.AddRange(missables);
+
+                _allOpponents.Clear();
+                _allOpponents.AddRange(opponentInfo
+                    .OrderBy(x => x.Region, StringComparer.CurrentCulture)
+                    .ThenBy(x => x.Location ?? "Location unverified", StringComparer.CurrentCulture)
+                    .ThenBy(x => x.DisplayName, StringComparer.CurrentCulture)
+                    .Select(x => new GwentOpponentViewModel(x, OnOpponentManualChange)));
+                RefreshOpponentFilter();
+                UpdateOpponentSummary();
                 SaveGamePath = saveGamePath;
                 
                 var requiredBase = cards.Where(c => c.Source == CardSource.BaseGame).Select(c => c.Name).Distinct().Count();
@@ -197,6 +257,7 @@ namespace GwentTracker.ViewModels
             var canAddFilter = this.WhenAnyValue(vm => vm.FilterString, filter => !string.IsNullOrWhiteSpace(filter));
             AddFilter = ReactiveCommand.Create(OnAddFilter, canAddFilter);
             RemoveFilter = ReactiveCommand.Create<string>(OnRemoveFilter);
+            ClearOpponentOverrides = ReactiveCommand.Create(OnClearOpponentOverrides);
 
             saveDirChanges?.Subscribe(OnSaveDirectoryChange);
         }
@@ -207,7 +268,7 @@ namespace GwentTracker.ViewModels
             SaveGamePath = path;
         }
         
-        private async Task<(IEnumerable<Card>, IEnumerable<MissableInfo>)> LoadCardsFromFiles()
+        private async Task<(IEnumerable<Card>, IEnumerable<MissableInfo>, IEnumerable<GwentOpponent>)> LoadCardsFromFiles()
         {
             var cards = new List<Card>();
             var missables = new List<MissableInfo>();
@@ -260,12 +321,13 @@ namespace GwentTracker.ViewModels
             }
             
 
-            return (cards, missables);
+            var opponents = await GwentOpponentRepository.LoadAsync();
+            return (cards, missables, opponents.Opponents);
         }
 
         private async Task<SaveGameInfo> LoadSaveGame(string path)
         {
-            var saveGame = await SavegameFile.ReadAsync(path);
+            var saveGame = await ReadStableSaveGame(path);
             var cardCollection = 
                 ((BsVariable)saveGame.Variables.Single(v => v.Name == "CR4GwintManager"))
                 .Variables
@@ -283,15 +345,51 @@ namespace GwentTracker.ViewModels
 
             // TODO: figure out how quest info is stored and pull out the quests that cause missable cards
 
+            var facts = GameplayFactReader.ReadFacts(saveGame);
+            var factValues = GameplayFactReader.GetValues(facts);
+
             return new SaveGameInfo
             {
-                CardCopies = cards
+                CardCopies = cards,
+                FactValues = factValues,
+                OpponentProfileId = SaveProfileId.Create(path, facts, factValues)
             };
+        }
+
+        private static async Task<SavegameFile> ReadStableSaveGame(string path)
+        {
+            const int maximumAttempts = 8;
+            Exception lastError = null;
+
+            for (var attempt = 0; attempt < maximumAttempts; attempt++)
+            {
+                try
+                {
+                    var before = new FileInfo(path);
+                    var length = before.Length;
+                    var writeTime = before.LastWriteTimeUtc;
+                    await Task.Delay(150);
+
+                    before.Refresh();
+                    if (before.Length != length || before.LastWriteTimeUtc != writeTime)
+                        continue;
+
+                    return await SavegameFile.ReadAsync(path);
+                }
+                catch (IOException e)
+                {
+                    lastError = e;
+                    await Task.Delay(150);
+                }
+            }
+
+            throw new IOException($"Save file '{path}' did not become readable and stable.", lastError);
         }
 
         private void OnSaveGameLoaded(SaveGameInfo info)
         {
             Model = info;
+            ApplyOpponentSave(info);
             var newCards = new List<string>();
             foreach (var (index, copies) in info.CardCopies)
             {
@@ -352,6 +450,116 @@ namespace GwentTracker.ViewModels
             DlcProgress.Copies = GetCopies(CardSource.Dlc);
             DlcProgress.Collected =  GetCollected(CardSource.Dlc, false);
             _initialLoadComplete = true;
+        }
+
+        private void ApplyOpponentSave(SaveGameInfo info)
+        {
+            _activeOpponentProfileId = info.OpponentProfileId;
+            _currentFactValues = info.FactValues ?? new Dictionary<string, long>(StringComparer.Ordinal);
+            _currentOwnedCardIds = GwentCardInventory.GetOwnedCardIds(info.CardCopies);
+            var overrides = _opponentOverrideStore.Load(_activeOpponentProfileId);
+
+            foreach (var opponent in _allOpponents)
+            {
+                bool? manualOverride = overrides.TryGetValue(opponent.Id, out var value) ? value : null;
+                var detected = GwentOpponentDetector.IsCompleted(
+                    opponent.Opponent,
+                    _currentFactValues,
+                    _currentOwnedCardIds);
+                opponent.ApplyState(detected, manualOverride);
+            }
+
+            RefreshOpponentFilter();
+            UpdateOpponentSummary();
+        }
+
+        private void OnOpponentManualChange(GwentOpponentViewModel opponent, bool played)
+        {
+            if (!string.IsNullOrEmpty(_activeOpponentProfileId))
+            {
+                try
+                {
+                    _opponentOverrideStore.Set(_activeOpponentProfileId, opponent.Id, played);
+                }
+                catch (Exception e)
+                {
+                    Log.Error(e, "Unable to save the manual opponent override for {opponentId}", opponent.Id);
+                    Notifications.OnNext(_t["Unable to save opponent checklist changes"]);
+                }
+            }
+
+            RefreshOpponentFilter();
+            UpdateOpponentSummary();
+        }
+
+        private void OnClearOpponentOverrides()
+        {
+            if (string.IsNullOrEmpty(_activeOpponentProfileId))
+                return;
+
+            try
+            {
+                _opponentOverrideStore.Clear(_activeOpponentProfileId);
+            }
+            catch (Exception e)
+            {
+                Log.Error(e, "Unable to clear manual opponent overrides");
+                Notifications.OnNext(_t["Unable to save opponent checklist changes"]);
+                return;
+            }
+            foreach (var opponent in _allOpponents)
+            {
+                var detected = GwentOpponentDetector.IsCompleted(
+                    opponent.Opponent,
+                    _currentFactValues,
+                    _currentOwnedCardIds);
+                opponent.ApplyState(detected, null);
+            }
+
+            RefreshOpponentFilter();
+            UpdateOpponentSummary();
+        }
+
+        private void RefreshOpponentFilter()
+        {
+            if (Opponents == null || _allOpponents == null)
+                return;
+
+            var compareInfo = _cultureInfo?.CompareInfo ?? CultureInfo.CurrentCulture.CompareInfo;
+            var query = _allOpponents.Where(opponent =>
+            {
+                var statusMatches = OpponentStatusFilter == "Played"
+                    ? opponent.Played
+                    : OpponentStatusFilter == "Not Played"
+                        ? !opponent.Played
+                        : true;
+                if (!statusMatches || string.IsNullOrWhiteSpace(OpponentFilterString))
+                    return statusMatches;
+
+                var search = OpponentFilterString.Trim();
+                return compareInfo.IndexOf(opponent.Region, search, CompareOptions.IgnoreCase) >= 0 ||
+                       compareInfo.IndexOf(opponent.Location, search, CompareOptions.IgnoreCase) >= 0 ||
+                       compareInfo.IndexOf(opponent.NpcName, search, CompareOptions.IgnoreCase) >= 0 ||
+                       compareInfo.IndexOf(opponent.Profession, search, CompareOptions.IgnoreCase) >= 0 ||
+                       compareInfo.IndexOf(opponent.CardWon, search, CompareOptions.IgnoreCase) >= 0;
+            });
+
+            Opponents.Clear();
+            foreach (var opponent in query)
+                Opponents.Add(opponent);
+        }
+
+        private void UpdateOpponentSummary()
+        {
+            if (_allOpponents == null)
+                return;
+
+            var completed = _allOpponents.Count(x => x.Played);
+            var regions = _allOpponents
+                .GroupBy(x => x.Region)
+                .OrderBy(x => x.Key, StringComparer.CurrentCulture)
+                .Select(x => $"{x.Key}: {x.Count(y => y.Played)}/{x.Count()}");
+            OpponentSummary = $"Completed: {completed}/{_allOpponents.Count} | {string.Join(" | ", regions)}";
         }
 
         private int GetCopies(CardSource source)

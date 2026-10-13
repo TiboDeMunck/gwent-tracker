@@ -159,64 +159,87 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </Grid>
-        <Grid Grid.Column="1" RowDefinitions="Auto, 15, *">
-            <StackPanel Grid.Row="0" Orientation="Horizontal">
-                <TextBox Margin="4 0 4 0" x:Name="FilterString" Watermark="{i18n:Translate Filter}" MinWidth="200"/>
-                <Button HorizontalAlignment="Right" x:Name="AddFilter" Content="{i18n:Translate Add}" />
-                <ItemsControl x:Name="Filters">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Orientation="Horizontal"/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate DataType="s:String">
-                            <Border CornerRadius="5" BorderBrush="Black" BorderThickness="1" Padding="5 2 5 2" Margin="4 0 0 0">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding}" VerticalAlignment="Center"/>
-                                    <Button Classes="pillRemove" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).RemoveFilter}" CommandParameter="{Binding}" />
-                                </StackPanel>
-                            </Border>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </StackPanel>
-            <DockPanel Grid.Row="1">
-                <ProgressBar DockPanel.Dock="Right" Width="50" Name="LoadGameProgress" IsIndeterminate="True" />
-                <TextBlock DockPanel.Dock="Left" Name="Status" />
-                
-            </DockPanel>
-            <Grid Grid.Row="2">
-                <DataGrid IsReadOnly="True" Name="Cards" AutoGenerateColumns="False" HorizontalAlignment="Stretch" x:DataType="vm:CardViewModel">
-                    <DataGrid.Columns>
-                        <DataGridCheckBoxColumn Binding="{Binding Obtained}"/>
-                        <DataGridTextColumn Header="{i18n:Translate Name}" Binding="{Binding Name}"/>
-                        <DataGridTemplateColumn Header="{i18n:Translate Copies}" SortMemberPath="MaxCopies">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate DataType="vm:CardViewModel">
-                                    <TextBlock VerticalAlignment="Center">
-                                        <TextBlock.Text>
-                                            <MultiBinding StringFormat="{i18n:Translate {}{0}/{1}}">
-                                                <Binding Path="Copies" />
-                                                <Binding Path="MaxCopies" />
-                                            </MultiBinding>
-                                        </TextBlock.Text>
-                                    </TextBlock>
+        <TabControl Grid.Column="1">
+            <TabItem Header="Cards">
+                <Grid RowDefinitions="Auto, 15, *">
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <TextBox Margin="4 0 4 0" x:Name="FilterString" Watermark="{i18n:Translate Filter}" MinWidth="200"/>
+                        <Button HorizontalAlignment="Right" x:Name="AddFilter" Content="{i18n:Translate Add}" />
+                        <ItemsControl x:Name="Filters">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate DataType="s:String">
+                                    <Border CornerRadius="5" BorderBrush="Black" BorderThickness="1" Padding="5 2 5 2" Margin="4 0 0 0">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding}" VerticalAlignment="Center"/>
+                                            <Button Classes="pillRemove" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).RemoveFilter}" CommandParameter="{Binding}" />
+                                        </StackPanel>
+                                    </Border>
                                 </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTextColumn Header="{i18n:Translate Deck}" Binding="{Binding Deck}"/>
-                        <DataGridTextColumn Header="{i18n:Translate Type}" Binding="{Binding Type}"/>
-                        <DataGridTextColumn Header="{i18n:Translate Location}" Binding="{Binding Location}"/>
-                        <DataGridTextColumn Header="{i18n:Translate Region}" Binding="{Binding Region}"/>
-                        <DataGridTextColumn
-                            Header="{i18n:Translate Source}"
-                            Binding="{Binding Source, Converter={StaticResource EnumDescriptionConverter}, Mode=OneWay}"
-                            IsReadOnly="True"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </Grid>
-        </Grid>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                    <DockPanel Grid.Row="1">
+                        <ProgressBar DockPanel.Dock="Right" Width="50" Name="LoadGameProgress" IsIndeterminate="True" />
+                        <TextBlock DockPanel.Dock="Left" Name="Status" />
+                    </DockPanel>
+                    <Grid Grid.Row="2">
+                        <DataGrid IsReadOnly="True" Name="Cards" AutoGenerateColumns="False" HorizontalAlignment="Stretch" x:DataType="vm:CardViewModel">
+                            <DataGrid.Columns>
+                                <DataGridCheckBoxColumn Binding="{Binding Obtained}"/>
+                                <DataGridTextColumn Header="{i18n:Translate Name}" Binding="{Binding Name}"/>
+                                <DataGridTemplateColumn Header="{i18n:Translate Copies}" SortMemberPath="MaxCopies">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate DataType="vm:CardViewModel">
+                                            <TextBlock VerticalAlignment="Center">
+                                                <TextBlock.Text>
+                                                    <MultiBinding StringFormat="{i18n:Translate {}{0}/{1}}">
+                                                        <Binding Path="Copies" />
+                                                        <Binding Path="MaxCopies" />
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Header="{i18n:Translate Deck}" Binding="{Binding Deck}"/>
+                                <DataGridTextColumn Header="{i18n:Translate Type}" Binding="{Binding Type}"/>
+                                <DataGridTextColumn Header="{i18n:Translate Location}" Binding="{Binding Location}"/>
+                                <DataGridTextColumn Header="{i18n:Translate Region}" Binding="{Binding Region}"/>
+                                <DataGridTextColumn
+                                    Header="{i18n:Translate Source}"
+                                    Binding="{Binding Source, Converter={StaticResource EnumDescriptionConverter}, Mode=OneWay}"
+                                    IsReadOnly="True"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Gwent Opponents">
+                <Grid RowDefinitions="Auto, Auto, *" Margin="4 0 0 0">
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="6">
+                        <TextBox x:Name="OpponentFilterString" Watermark="Search opponents" MinWidth="240"/>
+                        <ComboBox x:Name="OpponentStatusFilter" MinWidth="120"/>
+                        <Button x:Name="ClearOpponentOverrides" Content="Clear manual overrides"/>
+                    </StackPanel>
+                    <TextBlock Grid.Row="1" x:Name="OpponentSummary" Margin="0 6" TextWrapping="Wrap"/>
+                    <DataGrid Grid.Row="2" IsReadOnly="False" Name="Opponents" AutoGenerateColumns="False" HorizontalAlignment="Stretch" x:DataType="vm:GwentOpponentViewModel">
+                        <DataGrid.Columns>
+                            <DataGridCheckBoxColumn Header="Completed" Binding="{Binding Played, Mode=TwoWay}" IsReadOnly="False"/>
+                            <DataGridTextColumn Header="Region" Binding="{Binding Region}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Location" Binding="{Binding Location}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="NPC Name" Binding="{Binding NpcName}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Profession" Binding="{Binding Profession}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Card Won" Binding="{Binding CardWon}" IsReadOnly="True"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
         
     </Grid>
 
