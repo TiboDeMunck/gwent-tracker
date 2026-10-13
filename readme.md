@@ -1,12 +1,14 @@
 # Gwent Tracker [![Translation Progress](https://badges.crowdin.net/gwent-tracker/localized.svg)][1]
 
 
-Application that reads The Witcher 3 save files and reports gwent card 
-collection progress for the collect 'em all achievement.
+Application that reads The Witcher 3 save files to track Gwent card collection
+progress and completed opponents. The opponents checklist updates automatically,
+shows awarded cards when they can be identified, and supports manual completion.
 
 Download the latest release from [Github].
 
-![Screenshot]
+![Screenshot_1]
+![Screenshot_2]
 
 ## Installation
 
@@ -45,5 +47,6 @@ You can submit translations via [Crowdin] or direct pull requests.
 
 [1]: https://crowdin.com/project/gwent-tracker
 [Github]: https://github.com/Rfvgyhn/gwent-tracker/releases
-[Screenshot]: screenshot.png?raw=true
+[Screenshot_1]: screenshot_1.png?raw=true
+[Screenshot_2]: screenshot_2.png?raw=true
 [Crowdin]: https://crwd.in/gwent-tracker
