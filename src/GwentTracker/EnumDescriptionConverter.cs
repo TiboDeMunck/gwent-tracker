@@ -13,7 +13,7 @@ namespace GwentTracker
         {
             _t = new Translate();
         }
-        
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value != null && value is Enum e)

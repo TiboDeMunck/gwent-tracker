@@ -209,7 +209,10 @@
                         <DataGridTextColumn Header="{i18n:Translate Type}" Binding="{Binding Type}"/>
                         <DataGridTextColumn Header="{i18n:Translate Location}" Binding="{Binding Location}"/>
                         <DataGridTextColumn Header="{i18n:Translate Region}" Binding="{Binding Region}"/>
-                        <DataGridTextColumn Header="{i18n:Translate Source}" Binding="{Binding Source, Converter={StaticResource EnumDescriptionConverter}}"/>
+                        <DataGridTextColumn
+                            Header="{i18n:Translate Source}"
+                            Binding="{Binding Source, Converter={StaticResource EnumDescriptionConverter}, Mode=OneWay}"
+                            IsReadOnly="True"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
