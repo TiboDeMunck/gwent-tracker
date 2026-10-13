@@ -49,9 +49,7 @@ namespace GwentTracker
                 Log.Warning("No save files (*.sav) found in default save path {path}", savePath);
 
             var fontFamily = config["fontFamily"];
-            var textureInfo = new TextureInfo(config["texturePath"], 
-                                              "textures/{0}.png",
-                                              config.GetValue("cacheRemoteTextures", true));
+            var textureInfo = new TextureInfo("avares://GwentTracker/Assets/CardTextures/{0}.png");
             var saveDirChanges = ObserveSaveDirChanges(savePath, config.GetValue("autoload", true));
             
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktopLifetime) 

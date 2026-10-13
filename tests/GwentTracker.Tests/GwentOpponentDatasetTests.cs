@@ -53,4 +53,31 @@ public class GwentOpponentDatasetTests
         Assert.NotNull(fixedCard.CardId);
         Assert.Equal(string.Empty, new GwentOpponentViewModel(fixedCard).CardWon);
     }
+
+    [Fact]
+    public async Task PortraitReferencesMapKnownOpponentsAndLeaveUnknownPortraitsEmpty()
+    {
+        var opponents = (await GwentOpponentRepository.LoadAsync()).Opponents;
+
+        var bloodyBaron = Assert.Single(opponents, x => x.Id == "gwm-pin-36");
+        var baronViewModel = new GwentOpponentViewModel(bloodyBaron);
+        Assert.Equal("Assets/OpponentPortraits/gwm-pin-36.png", bloodyBaron.Portrait.File);
+        Assert.Equal("avares://gwenttracker/Assets/OpponentPortraits/gwm-pin-36.png", baronViewModel.PortraitResourceUri.AbsoluteUri);
+        Assert.Equal("Bloody Baron", baronViewModel.PreviewDisplayName);
+        Assert.Equal("Crow's Perch, Velen", baronViewModel.LocationAndRegion);
+
+        var blackboughMerchant = Assert.Single(opponents, x => x.Id == "gwm-pin-31");
+        var merchantViewModel = new GwentOpponentViewModel(blackboughMerchant);
+        Assert.Equal("Assets/OpponentPortraits/gwm-pin-31.png", blackboughMerchant.Portrait.File);
+        Assert.Equal("Shopkeeper", merchantViewModel.PreviewDisplayName);
+        Assert.Equal("Blackbough, Velen", merchantViewModel.LocationAndRegion);
+
+        var withoutPortrait = Assert.Single(opponents, x => x.Id == "gwm-pin-25");
+        var missingViewModel = new GwentOpponentViewModel(withoutPortrait);
+        Assert.Null(withoutPortrait.Portrait.File);
+        Assert.Null(missingViewModel.PortraitResourceUri);
+        Assert.True(missingViewModel.IsPortraitMissing);
+
+        Assert.Equal(88, opponents.Count(x => x.Portrait?.File != null));
+    }
 }

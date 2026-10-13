@@ -17,6 +17,7 @@ namespace GwentTracker.Views
     {
         private DataGrid Cards => this.FindControl<DataGrid>("Cards");
         private DataGrid Opponents => this.FindControl<DataGrid>("Opponents");
+        private TabControl MainTabs => this.FindControl<TabControl>("MainTabs");
         private ItemsControl Messages => this.FindControl<ItemsControl>("Messages");
         private TextBox FilterString => this.FindControl<TextBox>("FilterString");
         private TextBox OpponentFilterString => this.FindControl<TextBox>("OpponentFilterString");
@@ -45,6 +46,8 @@ namespace GwentTracker.Views
                 this.OneWayBind(ViewModel, vm => vm.LoaderVisibility, v => v.LoadGameProgress.IsVisible).DisposeWith(d);
                 this.OneWayBind(ViewModel, vm => vm.CardVisibility, v => v.SelectedCard.IsVisible).DisposeWith(d);
                 this.WhenAnyValue(v => v.Cards.SelectedItem).BindTo(this, w => w.ViewModel.SelectedCard).DisposeWith(d);
+                this.Bind(ViewModel, vm => vm.SelectedOpponent, v => v.Opponents.SelectedItem).DisposeWith(d);
+                this.WhenAnyValue(v => v.MainTabs.SelectedIndex).BindTo(this, w => w.ViewModel.SelectedTabIndex).DisposeWith(d);
                 this.WhenAnyValue(v => v.ViewModel.LoadCards).SelectMany(x => x.Execute()).Subscribe().DisposeWith(d);
                 this.BindCommand(ViewModel, vm => vm.AddFilter, v => v.AddFilter).DisposeWith(d);
                 this.BindCommand(ViewModel, vm => vm.ClearOpponentOverrides, v => v.ClearOpponentOverrides).DisposeWith(d);

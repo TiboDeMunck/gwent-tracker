@@ -56,14 +56,41 @@ namespace GwentTracker.ViewModels
         private ObservableAsPropertyHelper<bool> _loaderVisibility;
         public bool LoaderVisibility => _loaderVisibility.Value;
 
-        private ObservableAsPropertyHelper<bool> _cardVisibility;
-        public bool CardVisibility => _cardVisibility.Value;
+        public bool CardVisibility => SelectedTabIndex == 0 && SelectedCard != null;
+        public bool OpponentVisibility => SelectedTabIndex == 1 && SelectedOpponent != null;
         
         private CardViewModel _selectedCard;
         public CardViewModel SelectedCard
         {
             get => _selectedCard;
-            set => this.RaiseAndSetIfChanged(ref _selectedCard, value);
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _selectedCard, value);
+                this.RaisePropertyChanged(nameof(CardVisibility));
+            }
+        }
+
+        private GwentOpponentViewModel _selectedOpponent;
+        public GwentOpponentViewModel SelectedOpponent
+        {
+            get => _selectedOpponent;
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _selectedOpponent, value);
+                this.RaisePropertyChanged(nameof(OpponentVisibility));
+            }
+        }
+
+        private int _selectedTabIndex;
+        public int SelectedTabIndex
+        {
+            get => _selectedTabIndex;
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _selectedTabIndex, value);
+                this.RaisePropertyChanged(nameof(CardVisibility));
+                this.RaisePropertyChanged(nameof(OpponentVisibility));
+            }
         }
 
         private SaveGameInfo _model;
@@ -252,10 +279,6 @@ namespace GwentTracker.ViewModels
             this.WhenAnyValue(v => v.SelectedCard.LoadTexture)
                 .SelectMany(x => x.Execute())
                 .Subscribe();
-
-            _cardVisibility = this.WhenAnyValue(x => x.SelectedCard)
-                .Select(c => c != null)
-                .ToProperty(this, x => x.CardVisibility);
 
             var canAddFilter = this.WhenAnyValue(vm => vm.FilterString, filter => !string.IsNullOrWhiteSpace(filter));
             AddFilter = ReactiveCommand.Create(OnAddFilter, canAddFilter);
@@ -567,9 +590,16 @@ namespace GwentTracker.ViewModels
                        compareInfo.IndexOf(opponent.CardWon, search, CompareOptions.IgnoreCase) >= 0;
             });
 
+            var filteredOpponents = query.ToList();
+            if (Opponents.SequenceEqual(filteredOpponents))
+                return;
+
+            var selectedOpponent = SelectedOpponent;
             Opponents.Clear();
-            foreach (var opponent in query)
+            foreach (var opponent in filteredOpponents)
                 Opponents.Add(opponent);
+
+            SelectedOpponent = filteredOpponents.Contains(selectedOpponent) ? selectedOpponent : null;
         }
 
         private void UpdateOpponentSummary()

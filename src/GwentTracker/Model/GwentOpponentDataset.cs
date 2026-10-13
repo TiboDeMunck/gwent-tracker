@@ -51,6 +51,12 @@ namespace GwentTracker.Model
         public string SourceNote { get; set; }
         public List<string> AlternateWinFacts { get; set; }
         public bool VanillaWinFactKnownMissing { get; set; }
+        public GwentOpponentPortrait Portrait { get; set; }
+    }
+
+    public class GwentOpponentPortrait
+    {
+        public string File { get; set; }
     }
 
     public class GwentOpponentPosition

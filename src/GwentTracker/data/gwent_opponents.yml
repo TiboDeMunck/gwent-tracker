@@ -1,5 +1,5 @@
-# Gwent Opponents dataset (YAML)
-# Adapted from Gwent Players Map; see attribution and license fields below.
+# Gwent opponent list with extracted portraits from the user-provided GONAP mod.
+# Not all opponent IDs have a matching source portrait; see portrait.file: null for fallback.
 schemaVersion: 1
 attribution:
   adaptedFrom: Gwent Players Map by mateusands; original location information credited by author to untamed0 and
@@ -16,6 +16,9 @@ attribution:
   - Created readable names for generic merchant roles
   notice: This adapted dataset has CC BY-NC-SA 4.0 terms; it is not covered by the main application’s MIT license.
     Preserve attribution and license notices.
+  portraitReferences: Portraits extracted from user-provided Gwent Opponent Names And Portraits Remastered 2.3 mod
+    archive; source code tag-to-portrait assignments are from scripts/custom/gwent_op_names.ws. The mod and underlying
+    Witcher art may have redistribution restrictions.
 coverage:
   description: All 96 Gwent Players Map pin records from the referenced main branch, not a proven exhaustive list
     of all game Gwent opponents.
@@ -26,6 +29,11 @@ coverage:
   whiteOrchardIncluded: false
   locationCaveat: Readable location labels are derived or inferred, not a fully verified reverse-geocoding of the
     world coordinates. Nulls indicate unresolved locations.
+  portraitImagesPackaged: 88
+  portraitReferencePages: 10
+  portraitNote: 88 opponent IDs linked to actual images, 8 missing explicit matching portrait; null file means show
+    fallback. Total 135 source portraits extracted from user-supplied mod archive.
+  portraitSourceImages: 135
 opponents:
 - id: gwm-pin-2
   pinId: 2
@@ -41,6 +49,13 @@ opponents:
   position:
     x: 596.2
     y: 1836.8
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-2.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: fish_merch.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: novigrad_market_trader_01
 - id: gwm-pin-3
   pinId: 3
   gameWorld: novigrad
@@ -55,6 +70,13 @@ opponents:
   position:
     x: 656.9
     y: 1914.1
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-3.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: marcus.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: novigrad_market_book_merchant_01
 - id: gwm-pin-4
   pinId: 4
   gameWorld: novigrad
@@ -69,6 +91,13 @@ opponents:
   position:
     x: 580.2
     y: 1769.8
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-4.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: kate_madame.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: novi_brothel_dist_pegleg_peggys
 - id: gwm-pin-5
   pinId: 5
   gameWorld: novigrad
@@ -83,6 +112,13 @@ opponents:
   position:
     x: 762.8
     y: 1821.7
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-5.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: tretogor_merch.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: novigrad_market_trader_03
 - id: gwm-pin-6
   pinId: 6
   gameWorld: novigrad
@@ -97,6 +133,13 @@ opponents:
   position:
     x: 645.2
     y: 1732.2
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-6.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: putrid_merch.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: q301_shady_merchant
 - id: gwm-pin-7
   pinId: 7
   gameWorld: novigrad
@@ -111,6 +154,13 @@ opponents:
   position:
     x: 653.9
     y: 1779.2
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-7.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: glory_lane_herb.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: novi_brothel_dist_herbs_trader
 - id: gwm-pin-8
   pinId: 8
   gameWorld: novigrad
@@ -125,6 +175,13 @@ opponents:
   position:
     x: 1058.2
     y: 1725.1
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-8.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: cats_inn.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: novigrad_suburbs_seven_cats_inn_01
 - id: gwm-pin-9
   pinId: 9
   gameWorld: novigrad
@@ -139,6 +196,13 @@ opponents:
   position:
     x: 831.4
     y: 1728.8
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-9.png
+    sourcePage: https://witcher.fandom.com/wiki/Elihal
+    imageVerified: true
+    modTexture: elihal.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: elihal
 - id: gwm-pin-10
   pinId: 10
   gameWorld: novigrad
@@ -153,6 +217,13 @@ opponents:
   position:
     x: 726.4
     y: 1725.4
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-10.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: rosemary_inn.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: novi_brothel_dist_dandelions_brothel_01
 - id: gwm-pin-11
   pinId: 11
   gameWorld: novigrad
@@ -167,6 +238,13 @@ opponents:
   position:
     x: 550.3
     y: 1853.2
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-11.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: sturgeon_inn.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: novigrad_citizen_district_golden_sturgeon_inkeeper_01
 - id: gwm-pin-12
   pinId: 12
   gameWorld: novigrad
@@ -183,6 +261,13 @@ opponents:
     y: 1989.1
   alternateWinFacts:
   - merchant_card_novigrad_poor_district_nowhere_01 _card_already_given
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-12.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: nowhere_inn.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: novigrad_poor_district_nowhere_01
 - id: gwm-pin-13
   pinId: 13
   gameWorld: novigrad
@@ -197,6 +282,13 @@ opponents:
   position:
     x: 623.0
     y: 1846.7
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-13.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: fish_smith.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: novigrad_market_smith_01
 - id: gwm-pin-14
   pinId: 14
   gameWorld: novigrad
@@ -211,6 +303,13 @@ opponents:
   position:
     x: 629.1
     y: 1881.8
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-14.png
+    sourcePage: https://witcher.fandom.com/wiki/Vimme_Vivaldi
+    imageVerified: true
+    modTexture: vivaldi.png
+    matchMethod: named-quest-opponent-script-tag
+    sourceNpcTag: vimme_vivaldi
 - id: gwm-pin-15
   pinId: 15
   gameWorld: novigrad
@@ -225,6 +324,13 @@ opponents:
   position:
     x: 516.7
     y: 1908.6
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-15.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: silver_merch_blue.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: novigrad_market_trader_02
 - id: gwm-pin-16
   pinId: 16
   gameWorld: novigrad
@@ -239,6 +345,13 @@ opponents:
   position:
     x: 558.2
     y: 1934.8
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-16.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: silver_smith.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: novigrad_citizen_district_regular_smith_01
 - id: gwm-pin-17
   pinId: 17
   gameWorld: novigrad
@@ -253,6 +366,13 @@ opponents:
   position:
     x: 542.4
     y: 1951.4
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-17.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: silver_merch.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: novigrad_citizen_district_shopkeeper_01
 - id: gwm-pin-18
   pinId: 18
   gameWorld: novigrad
@@ -267,6 +387,13 @@ opponents:
   position:
     x: 678.3
     y: 2019.6
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-18.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: gildorf_inn.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: novi_rich_dist_general_store_01
 - id: gwm-pin-19
   pinId: 19
   gameWorld: novigrad
@@ -281,6 +408,13 @@ opponents:
   position:
     x: 831.2
     y: 1931.8
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-19.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: junk_seller.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: novi_junk_seller
 - id: gwm-pin-20
   pinId: 20
   gameWorld: novigrad
@@ -295,6 +429,13 @@ opponents:
   position:
     x: 848.8
     y: 1946.0
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-20.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: loan_shark.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: novi_poor_dist_loan_shark
 - id: gwm-pin-21
   pinId: 21
   gameWorld: novigrad
@@ -309,6 +450,13 @@ opponents:
   position:
     x: 480.9
     y: 2194.9
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-21.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: electors_priest.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: novi_temple_dist_alchemist_01
 - id: gwm-pin-22
   pinId: 22
   gameWorld: novigrad
@@ -323,6 +471,13 @@ opponents:
   position:
     x: 889.5
     y: 2061.9
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-22.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: crematory_alch.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: novi_crematory_alchemist_01
 - id: gwm-pin-23
   pinId: 23
   gameWorld: novigrad
@@ -337,6 +492,13 @@ opponents:
   position:
     x: 694.6
     y: 1913.7
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-23.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: kingfisher_inn2.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: kingfisher_replacement_01
 - id: gwm-pin-24
   pinId: 24
   gameWorld: novigrad
@@ -351,6 +513,13 @@ opponents:
   position:
     x: 914.8
     y: 1499.2
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-24.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: goose_inn.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: fat_catch_inn_barkeep_01
 - id: gwm-pin-25
   pinId: 25
   gameWorld: novigrad
@@ -365,6 +534,13 @@ opponents:
   position:
     x: 1940.3
     y: 1242.6
+  portrait:
+    file: null
+    sourcePage: null
+    imageVerified: false
+    modTexture: null
+    matchMethod: null
+    sourceNpcTag: null
 - id: gwm-pin-26
   pinId: 26
   gameWorld: novigrad
@@ -379,6 +555,13 @@ opponents:
   position:
     x: 1709.2
     y: 1015.0
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-26.png
+    sourcePage: https://witcher.fandom.com/wiki/Stjepan
+    imageVerified: true
+    modTexture: stjepan.png
+    matchMethod: named-quest-opponent-script-tag
+    sourceNpcTag: stjepan
 - id: gwm-pin-27
   pinId: 27
   gameWorld: novigrad
@@ -393,6 +576,13 @@ opponents:
   position:
     x: 1727.1
     y: 1041.1
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-27.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: oxenfurt_armor.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: whitebridge_redanian_armorer_01
 - id: gwm-pin-28
   pinId: 28
   gameWorld: novigrad
@@ -407,6 +597,13 @@ opponents:
   position:
     x: 1695.8
     y: 1060.9
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-28.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: oxenfurt_merch.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: whitebridge_general_store_01
 - id: gwm-pin-29
   pinId: 29
   gameWorld: novigrad
@@ -421,13 +618,20 @@ opponents:
   position:
     x: 1790.8
     y: 937.7
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-29.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: oxenfurt_smith.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: whitebridge_redanian_blacksmith_01
 - id: gwm-pin-30
   pinId: 30
   gameWorld: novigrad
   region: Velen
-  location: null
+  location: Mulbrydale
   locationStatus: unresolved
-  displayName: Armorer — map pin 30
+  displayName: Armorer — Mulbrydale
   profession: Armorer
   npcId: barons_keep_armorer_01
   cardId: null
@@ -436,6 +640,13 @@ opponents:
     x: 924.6
     y: 574.4
   sourceNote: Requires rescue first (per source pin note).
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-30.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: mulbrydale_smith.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: barons_keep_armorer_01
 - id: gwm-pin-31
   pinId: 31
   gameWorld: novigrad
@@ -450,6 +661,13 @@ opponents:
   position:
     x: -194.8
     y: 211.2
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-31.png
+    sourcePage: https://witcher.fandom.com/wiki/Merchant_(Blackbough)
+    imageVerified: true
+    modTexture: blackbough_merch.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: snots_general_store_01
 - id: gwm-pin-32
   pinId: 32
   gameWorld: novigrad
@@ -464,6 +682,13 @@ opponents:
   position:
     x: -203.3
     y: 171.7
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-32.png
+    sourcePage: https://witcher.fandom.com/wiki/Blacksmith_(Blackbough)
+    imageVerified: true
+    modTexture: blackbough_smith.png
+    matchMethod: explicit-script-branch-or-tag-prefix
+    sourceNpcTag: snots_blacksmith_01_sq104_shared
 - id: gwm-pin-33
   pinId: 33
   gameWorld: novigrad
@@ -478,6 +703,13 @@ opponents:
   position:
     x: 206.3
     y: 88.1
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-33.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: baron_merch.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: baron_keep_village_trader_01
 - id: gwm-pin-34
   pinId: 34
   gameWorld: novigrad
@@ -492,6 +724,13 @@ opponents:
   position:
     x: 216.8
     y: 135.7
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-34.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: baron_quartermaster.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: baron_quartermaster_01
 - id: gwm-pin-35
   pinId: 35
   gameWorld: novigrad
@@ -506,6 +745,13 @@ opponents:
   position:
     x: 233.1
     y: 151.7
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-35.png
+    sourcePage: https://witcher-games.fandom.com/wiki/Fergus_Graem
+    imageVerified: true
+    modTexture: fergus.png
+    matchMethod: explicit-script-branch-or-tag-prefix
+    sourceNpcTag: fergus_graem
 - id: gwm-pin-36
   pinId: 36
   gameWorld: novigrad
@@ -520,13 +766,20 @@ opponents:
   position:
     x: 176.3
     y: 189.8
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-36.png
+    sourcePage: https://witcher.fandom.com/wiki/Phillip_Strenger
+    imageVerified: true
+    modTexture: baron.png
+    matchMethod: named-quest-opponent-script-tag
+    sourceNpcTag: Baron
 - id: gwm-pin-37
   pinId: 37
   gameWorld: novigrad
   region: Velen
-  location: null
+  location: Claywich
   locationStatus: unresolved
-  displayName: Shopkeeper — map pin 37
+  displayName: Shopkeeper — Claywich
   profession: Shopkeeper
   npcId: glinsk_general_store_01
   cardId: null
@@ -535,13 +788,20 @@ opponents:
     x: 83.8
     y: -210.4
   sourceNote: Requires rescue first (per source pin note).
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-37.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: claywich_merch.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: glinsk_general_store_01
 - id: gwm-pin-38
   pinId: 38
   gameWorld: novigrad
   region: Velen
-  location: null
+  location: Oreton
   locationStatus: unresolved
-  displayName: Shopkeeper — map pin 38
+  displayName: Shopkeeper — Oreton
   profession: Shopkeeper
   npcId: rudnik_shopkeeper_01
   cardId: null
@@ -549,13 +809,20 @@ opponents:
   position:
     x: 157.8
     y: -431.6
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-38.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: oreton_merch.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: rudnik_shopkeeper_01
 - id: gwm-pin-39
   pinId: 39
   gameWorld: novigrad
   region: Velen
-  location: Lindenvale
+  location: Midcopse
   locationStatus: reference-or-inferred-name
-  displayName: Shopkeeper — Lindenvale
+  displayName: Shopkeeper — Midcopse
   profession: Shopkeeper
   npcId: mouth_shopkeeper_01
   cardId: null
@@ -563,13 +830,20 @@ opponents:
   position:
     x: -375.6
     y: -240.7
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-39.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: midcopse_merch.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: mouth_shopkeeper_01
 - id: gwm-pin-40
   pinId: 40
   gameWorld: novigrad
   region: Velen
-  location: Lindenvale
+  location: Midcopse
   locationStatus: reference-or-inferred-name
-  displayName: Armorer — Lindenvale
+  displayName: Armorer — Midcopse
   profession: Armorer
   npcId: mouth_armorer_01
   cardId: null
@@ -577,6 +851,13 @@ opponents:
   position:
     x: -395.5
     y: -234.1
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-40.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: midcopse_armor.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: mouth_armorer_01
 - id: gwm-pin-41
   pinId: 41
   gameWorld: novigrad
@@ -591,13 +872,20 @@ opponents:
   position:
     x: 222.8
     y: 156.9
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-41.png
+    sourcePage: https://witcher.fandom.com/wiki/Yoana
+    imageVerified: true
+    modTexture: yoana.png
+    matchMethod: explicit-script-branch-or-tag-prefix
+    sourceNpcTag: sq108_blacksmith_woman
 - id: gwm-pin-42
   pinId: 42
   gameWorld: novigrad
   region: Velen
-  location: Midcopse
+  location: Lindenvale
   locationStatus: reference-or-inferred-name
-  displayName: Shopkeeper — Midcopse
+  displayName: Shopkeeper — Lindenvale
   profession: Shopkeeper
   npcId: midcotts_trader_01
   cardId: null
@@ -605,13 +893,20 @@ opponents:
   position:
     x: 785.6
     y: 63.3
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-42.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: lindenvale_merch.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: midcotts_trader_01
 - id: gwm-pin-43
   pinId: 43
   gameWorld: novigrad
   region: Velen
-  location: Midcopse
+  location: Lindenvale
   locationStatus: reference-or-inferred-name
-  displayName: Blacksmith — Midcopse
+  displayName: Blacksmith — Lindenvale
   profession: Blacksmith
   npcId: midcotts_blacksmith_01
   cardId: null
@@ -619,6 +914,13 @@ opponents:
   position:
     x: 760.3
     y: 120.4
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-43.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: lindenvale_smith.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: midcotts_blacksmith_01
 - id: gwm-pin-44
   pinId: 44
   gameWorld: novigrad
@@ -633,6 +935,13 @@ opponents:
   position:
     x: 2374.3
     y: -1044.9
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-44.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: tavar.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: mq1051_nilfgaard_officer
 - id: gwm-pin-45
   pinId: 45
   gameWorld: novigrad
@@ -651,6 +960,13 @@ opponents:
   goneFacts:
   - q107_burrows_massacre
   - q107_burrows_hanged
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-45.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: downwarren_merch.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: borrows_shopkeep_01
 - id: gwm-pin-46
   pinId: 46
   gameWorld: skellige
@@ -665,6 +981,13 @@ opponents:
   position:
     x: 1719.8
     y: -1934.2
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-46.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: harviken_inn.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: dimun_tavern_barkeep_01
 - id: gwm-pin-47
   pinId: 47
   gameWorld: skellige
@@ -679,6 +1002,13 @@ opponents:
   position:
     x: 1733.6
     y: -1924.6
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-47.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: harviken_smith.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: dimun_smith_01
 - id: gwm-pin-48
   pinId: 48
   gameWorld: skellige
@@ -693,6 +1023,13 @@ opponents:
   position:
     x: 2761.5
     y: 61.7
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-48.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: larvik_merch.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: larvik_shopkeeper_01
 - id: gwm-pin-49
   pinId: 49
   gameWorld: skellige
@@ -707,6 +1044,13 @@ opponents:
   position:
     x: 2795.8
     y: 70.6
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-49.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: larvik_inn.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: larvik_warriors_hall_01
 - id: gwm-pin-50
   pinId: 50
   gameWorld: skellige
@@ -722,6 +1066,13 @@ opponents:
     x: 2830.3
     y: 81.8
   vanillaWinFactKnownMissing: true
+  portrait:
+    file: null
+    sourcePage: null
+    imageVerified: false
+    modTexture: null
+    matchMethod: null
+    sourceNpcTag: null
 - id: gwm-pin-51
   pinId: 51
   gameWorld: skellige
@@ -736,6 +1087,13 @@ opponents:
   position:
     x: 2739.7
     y: 64.6
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-51.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: larvik_armor.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: larvik_armorer_01
 - id: gwm-pin-52
   pinId: 52
   gameWorld: skellige
@@ -750,6 +1108,13 @@ opponents:
   position:
     x: 1483.5
     y: 1915.4
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-52.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: urialla_smith.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: tuiseach_smith_01
 - id: gwm-pin-53
   pinId: 53
   gameWorld: skellige
@@ -764,6 +1129,13 @@ opponents:
   position:
     x: 1527.3
     y: 1909.6
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-53.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: urialla_inn.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: tuiseach_inn_owner_01
 - id: gwm-pin-54
   pinId: 54
   gameWorld: skellige
@@ -778,6 +1150,13 @@ opponents:
   position:
     x: 1510.0
     y: 1873.0
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-54.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: urialla_armor.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: tuiseach_armorer_01
 - id: gwm-pin-55
   pinId: 55
   gameWorld: skellige
@@ -792,6 +1171,13 @@ opponents:
   position:
     x: -1623.6
     y: 1424.8
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-55.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: svorlag_smith.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: brokvar_smith_01
 - id: gwm-pin-56
   pinId: 56
   gameWorld: skellige
@@ -806,6 +1192,13 @@ opponents:
   position:
     x: -1610.2
     y: 1377.2
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-56.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: svorlag_merch.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: brokvar_shopkeeper_01
 - id: gwm-pin-57
   pinId: 57
   gameWorld: skellige
@@ -820,6 +1213,13 @@ opponents:
   position:
     x: -1656.8
     y: 1377.6
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-57.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: svorlag_inn.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: brokvar_innkeeper_01
 - id: gwm-pin-58
   pinId: 58
   gameWorld: skellige
@@ -834,6 +1234,13 @@ opponents:
   position:
     x: -87.3
     y: -971.1
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-58.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: muire_smith.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: lugos_keep_smith_01
 - id: gwm-pin-59
   pinId: 59
   gameWorld: skellige
@@ -848,6 +1255,13 @@ opponents:
   position:
     x: -85.8
     y: -975.8
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-59.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: muire_armor.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: lugos_keep_armorer_01
 - id: gwm-pin-60
   pinId: 60
   gameWorld: skellige
@@ -862,6 +1276,13 @@ opponents:
   position:
     x: -301.8
     y: -1052.6
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-60.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: holmstein_smith.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: holmestein_trader_01
 - id: gwm-pin-61
   pinId: 61
   gameWorld: skellige
@@ -876,6 +1297,13 @@ opponents:
   position:
     x: -593.4
     y: -274.4
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-61.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: ilge.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: arinbjorn_innkeeper_01
 - id: gwm-pin-62
   pinId: 62
   gameWorld: skellige
@@ -890,6 +1318,13 @@ opponents:
   position:
     x: -618.4
     y: -199.7
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-62.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: sigurd.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: arinbjorn_blacksmith_01
 - id: gwm-pin-63
   pinId: 63
   gameWorld: skellige
@@ -904,6 +1339,13 @@ opponents:
   position:
     x: 34.1
     y: -137.7
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-63.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: fayrlund_smith.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: ferlund_blacksmith_01
 - id: gwm-pin-64
   pinId: 64
   gameWorld: skellige
@@ -918,6 +1360,13 @@ opponents:
   position:
     x: 70.6
     y: -148.5
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-64.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: fayrlund_merch.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: ferlund_trader_01
 - id: gwm-pin-65
   pinId: 65
   gameWorld: skellige
@@ -932,6 +1381,13 @@ opponents:
   position:
     x: 404.2
     y: -738.6
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-65.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: fyresdal_merch.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: fyresdal_shopkeeper_01
 - id: gwm-pin-66
   pinId: 66
   gameWorld: skellige
@@ -947,34 +1403,55 @@ opponents:
     x: 380.9
     y: -740.6
   vanillaWinFactKnownMissing: true
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-66.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: fyresdal_smith.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: fyresdal_smith_01
 - id: gwm-pin-67
   pinId: 67
   gameWorld: skellige
   region: Skellige
   location: Kaer Trolde castle
   locationStatus: reference-or-inferred-name
-  displayName: Armorer — Kaer Trolde castle
-  profession: Armorer
+  displayName: Blacksmith — Kaer Trolde castle
+  profession: Blacksmith
   npcId: kaer_trolde_castle_blacksmith_01
   cardId: null
   category: merchant-random-pool
   position:
     x: -149.6
     y: 757.5
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-67.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: trolde_smith.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: kaer_trolde_castle_blacksmith_01
 - id: gwm-pin-68
   pinId: 68
   gameWorld: skellige
   region: Skellige
   location: Kaer Trolde castle
   locationStatus: reference-or-inferred-name
-  displayName: Blacksmith — Kaer Trolde castle
-  profession: Blacksmith
+  displayName: Armorer — Kaer Trolde castle
+  profession: Armorer
   npcId: kaer_trolde_castle_armorer_01
   cardId: null
   category: merchant-random-pool
   position:
     x: -146.2
     y: 756.7
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-68.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: trolde_armor.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: kaer_trolde_castle_armorer_01
 - id: gwm-pin-69
   pinId: 69
   gameWorld: skellige
@@ -989,6 +1466,13 @@ opponents:
   position:
     x: 635.3
     y: 25.3
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-69.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: blandare_merch.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: blandare_merchant_01
 - id: gwm-pin-70
   pinId: 70
   gameWorld: skellige
@@ -1003,6 +1487,13 @@ opponents:
   position:
     x: -17.2
     y: 576.1
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-70.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: trolde_herb.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: kaer_trolde_herbalist_01
 - id: gwm-pin-71
   pinId: 71
   gameWorld: skellige
@@ -1017,6 +1508,13 @@ opponents:
   position:
     x: -60.3
     y: 623.2
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-71.png
+    sourcePage: https://witcher.fandom.com/wiki/Jonas_the_Innkeep
+    imageVerified: true
+    modTexture: jonas.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: jonas
 - id: gwm-pin-72
   pinId: 72
   gameWorld: skellige
@@ -1031,6 +1529,13 @@ opponents:
   position:
     x: 1038.4
     y: 261.1
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-72.png
+    sourcePage: https://witcher.fandom.com/wiki/Gremist
+    imageVerified: true
+    modTexture: gremist.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: gremista
 - id: gwm-pin-73
   pinId: 73
   gameWorld: bob
@@ -1045,6 +1550,13 @@ opponents:
   position:
     x: -585.7
     y: -1396.8
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-73.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: pheasantry_inn.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: shop_37_city_west_innkeeper
 - id: gwm-pin-74
   pinId: 74
   gameWorld: bob
@@ -1059,6 +1571,13 @@ opponents:
   position:
     x: -431.3
     y: -1413.2
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-74.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: bob_herb.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: shop_46_city_south_herbalist
 - id: gwm-pin-75
   pinId: 75
   gameWorld: bob
@@ -1073,6 +1592,13 @@ opponents:
   position:
     x: -582.5
     y: -1321.8
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-75.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: bob_cammerlengo.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: shop_cammerlengo
 - id: gwm-pin-76
   pinId: 76
   gameWorld: bob
@@ -1087,6 +1613,13 @@ opponents:
   position:
     x: -547.4
     y: -1355.7
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-76.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: bob_perfumer.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: shop_41_city_west_alchemist
 - id: gwm-pin-77
   pinId: 77
   gameWorld: bob
@@ -1101,6 +1634,13 @@ opponents:
   position:
     x: -463.3
     y: -1413.7
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-77.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: dupont_n_sons_merch.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: shop_45_city_east_merchant
 - id: gwm-pin-78
   pinId: 78
   gameWorld: bob
@@ -1115,6 +1655,13 @@ opponents:
   position:
     x: -492.5
     y: -1415.5
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-78.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: hauteville_armor.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: shop_38_city_west_armourer
 - id: gwm-pin-79
   pinId: 79
   gameWorld: bob
@@ -1129,6 +1676,13 @@ opponents:
   position:
     x: 35.7
     y: -1755.5
+  portrait:
+    file: null
+    sourcePage: null
+    imageVerified: false
+    modTexture: null
+    matchMethod: null
+    sourceNpcTag: null
 - id: gwm-pin-80
   pinId: 80
   gameWorld: bob
@@ -1143,6 +1697,13 @@ opponents:
   position:
     x: -466.9
     y: -1359.6
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-80.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: jewels_inn.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: shop_43_city_east_wine_merchant
 - id: gwm-pin-81
   pinId: 81
   gameWorld: bob
@@ -1157,6 +1718,13 @@ opponents:
   position:
     x: -562.5
     y: -1270.7
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-81.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: pierre.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: q705_tailor
 - id: gwm-pin-82
   pinId: 82
   gameWorld: bob
@@ -1171,6 +1739,13 @@ opponents:
   position:
     x: 32.0
     y: -1705.4
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-82.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: scarlet_cardinal_inn.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: shop_31_trappers_village_innkeeper
 - id: gwm-pin-83
   pinId: 83
   gameWorld: bob
@@ -1185,6 +1760,13 @@ opponents:
   position:
     x: -226.1
     y: -1174.4
+  portrait:
+    file: null
+    sourcePage: null
+    imageVerified: false
+    modTexture: null
+    matchMethod: null
+    sourceNpcTag: null
 - id: gwm-pin-84
   pinId: 84
   gameWorld: bob
@@ -1199,6 +1781,13 @@ opponents:
   position:
     x: -249.4
     y: -1170.7
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-84.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: bob_butcher.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: shop_22_port_butcher
 - id: gwm-pin-85
   pinId: 85
   gameWorld: bob
@@ -1213,6 +1802,13 @@ opponents:
   position:
     x: -538.6
     y: -977.2
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-85.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: tourney_inn.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: shop_25_tournament_meadows_innkeper
 - id: gwm-pin-86
   pinId: 86
   gameWorld: bob
@@ -1227,6 +1823,13 @@ opponents:
   position:
     x: -509.5
     y: -983.0
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-86.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: tourney_barber.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: shop_14_tournament_meadows_barber
 - id: gwm-pin-87
   pinId: 87
   gameWorld: bob
@@ -1241,6 +1844,13 @@ opponents:
   position:
     x: -481.2
     y: -953.2
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-87.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: tourney_smith.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: shop_13_tournament_meadows_blacksmith
 - id: gwm-pin-88
   pinId: 88
   gameWorld: bob
@@ -1255,6 +1865,13 @@ opponents:
   position:
     x: -466.6
     y: -955.4
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-88.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: tourney_armor.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: shop_12_tournament_meadows_armourer
 - id: gwm-pin-89
   pinId: 89
   gameWorld: bob
@@ -1269,6 +1886,13 @@ opponents:
   position:
     x: -813.0
     y: -333.2
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-89.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: ravello_herb.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: shop_09_ravello_herbalist
 - id: gwm-pin-90
   pinId: 90
   gameWorld: bob
@@ -1283,6 +1907,13 @@ opponents:
   position:
     x: 330.0
     y: -1010.0
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-90.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: flovive_inn.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: shop_19_rafstmen_village_innkeeper
 - id: gwm-pin-91
   pinId: 91
   gameWorld: bob
@@ -1297,6 +1928,13 @@ opponents:
   position:
     x: -150.6
     y: -644.4
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-91.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: cockatrice_inn.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: shop_18_cocatrice_inn_innkeeper
 - id: gwm-pin-92
   pinId: 92
   gameWorld: novigrad
@@ -1311,6 +1949,13 @@ opponents:
   position:
     x: 1486.5
     y: 1546.4
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-92.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: circus_merch.png
+    matchMethod: exact-script-tag
+    sourceNpcTag: circus_camp_merchant_01
 - id: gwm-pin-93
   pinId: 93
   gameWorld: skellige
@@ -1325,6 +1970,13 @@ opponents:
   position:
     x: 530.5
     y: -192.6
+  portrait:
+    file: null
+    sourcePage: null
+    imageVerified: false
+    modTexture: null
+    matchMethod: null
+    sourceNpcTag: null
 - id: gwm-pin-94
   pinId: 94
   gameWorld: skellige
@@ -1339,6 +1991,13 @@ opponents:
   position:
     x: -67.2
     y: 656.2
+  portrait:
+    file: null
+    sourcePage: null
+    imageVerified: false
+    modTexture: null
+    matchMethod: null
+    sourceNpcTag: null
 - id: gwm-pin-95
   pinId: 95
   gameWorld: skellige
@@ -1353,6 +2012,13 @@ opponents:
   position:
     x: 112.5
     y: 47.3
+  portrait:
+    file: null
+    sourcePage: null
+    imageVerified: false
+    modTexture: null
+    matchMethod: null
+    sourceNpcTag: null
 - id: gwm-pin-98
   pinId: 98
   gameWorld: novigrad
@@ -1367,6 +2033,13 @@ opponents:
   position:
     x: 631.5
     y: 1554.6
+  portrait:
+    file: null
+    sourcePage: null
+    imageVerified: false
+    modTexture: null
+    matchMethod: null
+    sourceNpcTag: null
 - id: gwm-pin-99
   pinId: 99
   gameWorld: novigrad
@@ -1381,3 +2054,10 @@ opponents:
   position:
     x: 530.9
     y: 535.8
+  portrait:
+    file: Assets/OpponentPortraits/gwm-pin-99.png
+    sourcePage: null
+    imageVerified: true
+    modTexture: crossroads_inn.png
+    matchMethod: named-quest-opponent-script-tag
+    sourceNpcTag: nml_crossroads_barkeep
