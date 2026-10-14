@@ -1,9 +1,7 @@
-# Gwent opponent list with extracted portraits from the user-provided GONAP mod.
-# Not all opponent IDs have a matching source portrait; see portrait.file: null for fallback.
 schemaVersion: 1
 attribution:
-  adaptedFrom: Gwent Players Map by mateusands; original location information credited by author to untamed0 and
-    witcher3map contributors
+  adaptedFrom: Gwent Players Map by mateusands; original location information credited by author to untamed0 and witcher3map
+    contributors
   sourceRepository: https://github.com/mateusands/witcher3-gwent-players-map
   sourceDataFile: mods/modGwentPlayersMap/content/scripts/local/gwm_data.ws
   sourceDataUrl: https://github.com/mateusands/witcher3-gwent-players-map/blob/main/mods/modGwentPlayersMap/content/scripts/local/gwm_data.ws
@@ -14,25 +12,28 @@ attribution:
   - Added inferred readable region and location labels
   - Classified merchant reward types
   - Created readable names for generic merchant roles
-  notice: This adapted dataset has CC BY-NC-SA 4.0 terms; it is not covered by the main application’s MIT license.
-    Preserve attribution and license notices.
-  portraitReferences: Portraits extracted from user-provided Gwent Opponent Names And Portraits Remastered 2.3 mod
-    archive; source code tag-to-portrait assignments are from scripts/custom/gwent_op_names.ws. The mod and underlying
-    Witcher art may have redistribution restrictions.
+  - Refined select NPC display names/locations from user-provided Witcher Wiki article metadata (2026-10-14); ambiguous matches
+    documented separately
+  notice: This adapted dataset has CC BY-NC-SA 4.0 terms; it is not covered by the main application’s MIT license. Preserve
+    attribution and license notices.
+  portraitReferences: Portraits extracted from user-provided Gwent Opponent Names And Portraits Remastered 2.3 mod archive;
+    source code tag-to-portrait assignments are from scripts/custom/gwent_op_names.ws. The mod and underlying Witcher art
+    may have redistribution restrictions.
 coverage:
-  description: All 96 Gwent Players Map pin records from the referenced main branch, not a proven exhaustive list
-    of all game Gwent opponents.
+  description: All 96 Gwent Players Map pin records from the referenced main branch, not a proven exhaustive list of all game
+    Gwent opponents.
   totalPins: 96
   merchantRandomPool: 71
   merchantFixedCard: 19
   questFixedCard: 6
   whiteOrchardIncluded: false
-  locationCaveat: Readable location labels are derived or inferred, not a fully verified reverse-geocoding of the
-    world coordinates. Nulls indicate unresolved locations.
+  locationCaveat: Readable locations are partly sourced from Witcher Wiki article mappings and still require confirmation
+    against game coordinates for ambiguous NPCs; see REVIEW_NOTES.md.
   portraitImagesPackaged: 88
-  portraitReferencePages: 10
-  portraitNote: 88 opponent IDs linked to actual images, 8 missing explicit matching portrait; null file means show
-    fallback. Total 135 source portraits extracted from user-supplied mod archive.
+  portraitReferencePages: 94
+  portraitNote: 94 Wiki article mappings from user-provided review report; downloaded portrait files themselves are NOT bundled
+    in this YAML package. Prior extracted-mod image metadata remains preserved; newly assigned Wiki paths require copying
+    the downloaded PNGs.
   portraitSourceImages: 135
 opponents:
 - id: gwm-pin-2
@@ -51,7 +52,7 @@ opponents:
     y: 1836.8
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-2.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Merchant_(Fish_Market)
     imageVerified: true
     modTexture: fish_merch.png
     matchMethod: exact-script-tag
@@ -60,10 +61,10 @@ opponents:
   pinId: 3
   gameWorld: novigrad
   region: Novigrad
-  location: Novigrad — marketplace
+  location: Novigrad — Hierarch Square (Books and Scrolls)
   locationStatus: reference-or-inferred-name
-  displayName: Book merchant — Novigrad — marketplace
-  profession: Book merchant
+  displayName: Marcus T.K. Hodgson
+  profession: Bookseller
   npcId: novigrad_market_book_merchant_01
   cardId: null
   category: merchant-random-pool
@@ -72,7 +73,7 @@ opponents:
     y: 1914.1
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-3.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Marcus_T.K._Hodgson
     imageVerified: true
     modTexture: marcus.png
     matchMethod: exact-script-tag
@@ -81,10 +82,10 @@ opponents:
   pinId: 4
   gameWorld: novigrad
   region: Novigrad
-  location: Novigrad — Crippled Kate
+  location: Novigrad — Crippled Kate's
   locationStatus: reference-or-inferred-name
-  displayName: Crippled Kate
-  profession: Crippled Kate
+  displayName: Madame — Crippled Kate's
+  profession: Madame
   npcId: novi_brothel_dist_pegleg_peggys
   cardId: null
   category: merchant-random-pool
@@ -93,7 +94,7 @@ opponents:
     y: 1769.8
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-4.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Madame_(Crippled_Kate%27s)
     imageVerified: true
     modTexture: kate_madame.png
     matchMethod: exact-script-tag
@@ -102,10 +103,10 @@ opponents:
   pinId: 5
   gameWorld: novigrad
   region: Novigrad
-  location: Novigrad — marketplace
+  location: Novigrad — Tretogor Gate marketplace
   locationStatus: inferred
-  displayName: Shopkeeper — Novigrad — marketplace (pin 5)
-  profession: Shopkeeper
+  displayName: Merchant — Tretogor Gate
+  profession: Merchant
   npcId: novigrad_market_trader_03
   cardId: null
   category: merchant-random-pool
@@ -114,7 +115,7 @@ opponents:
     y: 1821.7
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-5.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Merchant_(Tretogor_Gate)
     imageVerified: true
     modTexture: tretogor_merch.png
     matchMethod: exact-script-tag
@@ -123,10 +124,10 @@ opponents:
   pinId: 6
   gameWorld: novigrad
   region: Novigrad
-  location: Novigrad — city
+  location: Novigrad — Putrid Grove
   locationStatus: inferred
-  displayName: Shopkeeper — Novigrad — city (pin 6)
-  profession: Shopkeeper
+  displayName: Merchant — Putrid Grove
+  profession: Merchant
   npcId: q301_shady_merchant
   cardId: null
   category: merchant-random-pool
@@ -135,7 +136,7 @@ opponents:
     y: 1732.2
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-6.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Merchant_(Putrid_Grove)
     imageVerified: true
     modTexture: putrid_merch.png
     matchMethod: exact-script-tag
@@ -144,9 +145,9 @@ opponents:
   pinId: 7
   gameWorld: novigrad
   region: Novigrad
-  location: Novigrad — brothel district
+  location: Novigrad — Glory Lane
   locationStatus: reference-or-inferred-name
-  displayName: Herbalist — Novigrad — brothel district
+  displayName: Herbalist — Glory Lane
   profession: Herbalist
   npcId: novi_brothel_dist_herbs_trader
   cardId: null
@@ -156,7 +157,7 @@ opponents:
     y: 1779.2
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-7.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Herbalist_(Glory_Lane)
     imageVerified: true
     modTexture: glory_lane_herb.png
     matchMethod: exact-script-tag
@@ -177,7 +178,7 @@ opponents:
     y: 1725.1
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-8.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Innkeep_(Seven_Cats_Inn)
     imageVerified: true
     modTexture: cats_inn.png
     matchMethod: exact-script-tag
@@ -219,7 +220,7 @@ opponents:
     y: 1725.4
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-10.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Innkeep_(Rosemary_and_Thyme)
     imageVerified: true
     modTexture: rosemary_inn.png
     matchMethod: exact-script-tag
@@ -240,7 +241,7 @@ opponents:
     y: 1853.2
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-11.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Innkeep_(The_Golden_Sturgeon)
     imageVerified: true
     modTexture: sturgeon_inn.png
     matchMethod: exact-script-tag
@@ -263,7 +264,7 @@ opponents:
   - merchant_card_novigrad_poor_district_nowhere_01 _card_already_given
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-12.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Innkeep_(The_Nowhere_Inn)
     imageVerified: true
     modTexture: nowhere_inn.png
     matchMethod: exact-script-tag
@@ -284,7 +285,7 @@ opponents:
     y: 1846.7
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-13.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Blacksmith_(Novigrad)
     imageVerified: true
     modTexture: fish_smith.png
     matchMethod: exact-script-tag
@@ -314,9 +315,9 @@ opponents:
   pinId: 15
   gameWorld: novigrad
   region: Novigrad
-  location: Novigrad — marketplace
-  locationStatus: reference-or-inferred-name
-  displayName: Fishmonger — Novigrad — marketplace
+  location: Novigrad —  Silverton
+  locationStatus: inferred
+  displayName: Fishmonger — Silverton
   profession: Fishmonger
   npcId: novigrad_market_trader_02
   cardId: null
@@ -326,7 +327,7 @@ opponents:
     y: 1908.6
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-15.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Merchant_(fishmonger)
     imageVerified: true
     modTexture: silver_merch_blue.png
     matchMethod: exact-script-tag
@@ -335,9 +336,9 @@ opponents:
   pinId: 16
   gameWorld: novigrad
   region: Novigrad
-  location: Novigrad — city
+  location: Novigrad — Silverton
   locationStatus: inferred
-  displayName: Blacksmith — Novigrad — city
+  displayName: Blacksmith — Silverton
   profession: Blacksmith
   npcId: novigrad_citizen_district_regular_smith_01
   cardId: null
@@ -347,7 +348,7 @@ opponents:
     y: 1934.8
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-16.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Blacksmith_(Silverton)
     imageVerified: true
     modTexture: silver_smith.png
     matchMethod: exact-script-tag
@@ -356,10 +357,10 @@ opponents:
   pinId: 17
   gameWorld: novigrad
   region: Novigrad
-  location: Novigrad — city
+  location: Novigrad — Silverton
   locationStatus: inferred
-  displayName: Shopkeeper — Novigrad — city (pin 17)
-  profession: Shopkeeper
+  displayName: Merchant — Silverton
+  profession: Merchant
   npcId: novigrad_citizen_district_shopkeeper_01
   cardId: null
   category: merchant-random-pool
@@ -368,7 +369,7 @@ opponents:
     y: 1951.4
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-17.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Merchant_(Silverton)
     imageVerified: true
     modTexture: silver_merch.png
     matchMethod: exact-script-tag
@@ -377,10 +378,10 @@ opponents:
   pinId: 18
   gameWorld: novigrad
   region: Novigrad
-  location: Novigrad — rich district
+  location: Novigrad — Gildorf
   locationStatus: inferred
-  displayName: Shopkeeper — Novigrad — rich district
-  profession: Shopkeeper
+  displayName: Merchant — Gildorf
+  profession: Merchant
   npcId: novi_rich_dist_general_store_01
   cardId: null
   category: merchant-random-pool
@@ -389,7 +390,7 @@ opponents:
     y: 2019.6
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-18.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Merchant_(Gildorf)
     imageVerified: true
     modTexture: gildorf_inn.png
     matchMethod: exact-script-tag
@@ -398,10 +399,10 @@ opponents:
   pinId: 19
   gameWorld: novigrad
   region: Novigrad
-  location: Novigrad — city
+  location: Novigrad — The Bits
   locationStatus: inferred
-  displayName: Shopkeeper — Novigrad — city (pin 19)
-  profession: Shopkeeper
+  displayName: Merchant — The Bits
+  profession: Merchant
   npcId: novi_junk_seller
   cardId: null
   category: merchant-random-pool
@@ -410,7 +411,7 @@ opponents:
     y: 1931.8
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-19.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Merchant_(The_Bits)
     imageVerified: true
     modTexture: junk_seller.png
     matchMethod: exact-script-tag
@@ -431,7 +432,7 @@ opponents:
     y: 1946.0
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-20.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Loan_Shark
     imageVerified: true
     modTexture: loan_shark.png
     matchMethod: exact-script-tag
@@ -440,10 +441,10 @@ opponents:
   pinId: 21
   gameWorld: novigrad
   region: Novigrad
-  location: Novigrad — Temple Isle
+  location: Novigrad — Electors' Square
   locationStatus: reference-or-inferred-name
-  displayName: Alchemist — Novigrad — Temple Isle
-  profession: Alchemist
+  displayName: Eternal Fire Priest — Electors' Square
+  profession: Alchemist / Priest
   npcId: novi_temple_dist_alchemist_01
   cardId: null
   category: merchant-random-pool
@@ -452,7 +453,7 @@ opponents:
     y: 2194.9
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-21.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Eternal_Fire_Priest_(Electors%27_Square)
     imageVerified: true
     modTexture: electors_priest.png
     matchMethod: exact-script-tag
@@ -473,7 +474,7 @@ opponents:
     y: 2061.9
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-22.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Alchemist_(Crematory)
     imageVerified: true
     modTexture: crematory_alch.png
     matchMethod: exact-script-tag
@@ -494,7 +495,7 @@ opponents:
     y: 1913.7
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-23.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Innkeep_(The_Kingfisher)
     imageVerified: true
     modTexture: kingfisher_inn2.png
     matchMethod: exact-script-tag
@@ -503,9 +504,9 @@ opponents:
   pinId: 24
   gameWorld: novigrad
   region: Novigrad
-  location: Fat Catch Inn
+  location: Cunny of the Goose
   locationStatus: inferred
-  displayName: Innkeeper — Fat Catch Inn
+  displayName: Innkeeper — Cunny of the Goose
   profession: Innkeeper
   npcId: fat_catch_inn_barkeep_01
   cardId: null
@@ -515,7 +516,7 @@ opponents:
     y: 1499.2
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-24.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Innkeep_(Cunny_of_the_Goose)
     imageVerified: true
     modTexture: goose_inn.png
     matchMethod: exact-script-tag
@@ -526,7 +527,7 @@ opponents:
   region: Oxenfurt
   location: White Bridge area
   locationStatus: inferred
-  displayName: Herbalist — White Bridge area
+  displayName: Otto Bamber
   profession: Herbalist
   npcId: whitebridge_herbalist_01
   cardId: null
@@ -535,8 +536,8 @@ opponents:
     x: 1940.3
     y: 1242.6
   portrait:
-    file: null
-    sourcePage: null
+    file: Assets/OpponentPortraits/gwm-pin-25.png
+    sourcePage: https://witcher.fandom.com/wiki/Otto_Bamber
     imageVerified: false
     modTexture: null
     matchMethod: null
@@ -578,7 +579,7 @@ opponents:
     y: 1041.1
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-27.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Armorer_(Oxenfurt)
     imageVerified: true
     modTexture: oxenfurt_armor.png
     matchMethod: exact-script-tag
@@ -599,7 +600,7 @@ opponents:
     y: 1060.9
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-28.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Merchant_(Oxenfurt)
     imageVerified: true
     modTexture: oxenfurt_merch.png
     matchMethod: exact-script-tag
@@ -620,7 +621,7 @@ opponents:
     y: 937.7
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-29.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Blacksmith_(Oxenfurt)
     imageVerified: true
     modTexture: oxenfurt_smith.png
     matchMethod: exact-script-tag
@@ -642,7 +643,7 @@ opponents:
   sourceNote: Requires rescue first (per source pin note).
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-30.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Swordsmith_(Mulbrydale)
     imageVerified: true
     modTexture: mulbrydale_smith.png
     matchMethod: exact-script-tag
@@ -705,7 +706,7 @@ opponents:
     y: 88.1
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-33.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Merchant_(Crow's_Perch)
     imageVerified: true
     modTexture: baron_merch.png
     matchMethod: exact-script-tag
@@ -726,7 +727,7 @@ opponents:
     y: 135.7
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-34.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Quartermaster_(Crow's_Perch)
     imageVerified: true
     modTexture: baron_quartermaster.png
     matchMethod: exact-script-tag
@@ -747,7 +748,7 @@ opponents:
     y: 151.7
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-35.png
-    sourcePage: https://witcher-games.fandom.com/wiki/Fergus_Graem
+    sourcePage: https://witcher.fandom.com/wiki/Fergus_Graem
     imageVerified: true
     modTexture: fergus.png
     matchMethod: explicit-script-branch-or-tag-prefix
@@ -790,7 +791,7 @@ opponents:
   sourceNote: Requires rescue first (per source pin note).
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-37.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Merchant_(Claywich)
     imageVerified: true
     modTexture: claywich_merch.png
     matchMethod: exact-script-tag
@@ -811,7 +812,7 @@ opponents:
     y: -431.6
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-38.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Merchant_(Oreton)
     imageVerified: true
     modTexture: oreton_merch.png
     matchMethod: exact-script-tag
@@ -832,7 +833,7 @@ opponents:
     y: -240.7
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-39.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Merchant_(Midcopse)
     imageVerified: true
     modTexture: midcopse_merch.png
     matchMethod: exact-script-tag
@@ -853,7 +854,7 @@ opponents:
     y: -234.1
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-40.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Armorer_(Midcopse)
     imageVerified: true
     modTexture: midcopse_armor.png
     matchMethod: exact-script-tag
@@ -895,7 +896,7 @@ opponents:
     y: 63.3
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-42.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Merchant_(Lindenvale)
     imageVerified: true
     modTexture: lindenvale_merch.png
     matchMethod: exact-script-tag
@@ -916,7 +917,7 @@ opponents:
     y: 120.4
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-43.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Blacksmith_(Lindenvale)
     imageVerified: true
     modTexture: lindenvale_smith.png
     matchMethod: exact-script-tag
@@ -927,8 +928,8 @@ opponents:
   region: Velen
   location: Nilfgaardian Army Group “Center” Camp
   locationStatus: inferred
-  displayName: Nilfgaardian officer — Nilfgaardian Army Group “Center” Camp
-  profession: Nilfgaardian officer
+  displayName: Tavar Eggebracht
+  profession: Nilfgaardian quartermaster
   npcId: mq1051_nilfgaard_officer
   cardId: null
   category: merchant-random-pool
@@ -937,7 +938,7 @@ opponents:
     y: -1044.9
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-44.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Tavar_Eggebracht
     imageVerified: true
     modTexture: tavar.png
     matchMethod: exact-script-tag
@@ -962,7 +963,7 @@ opponents:
   - q107_burrows_hanged
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-45.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Merchant_(Downwarren)
     imageVerified: true
     modTexture: downwarren_merch.png
     matchMethod: exact-script-tag
@@ -983,7 +984,7 @@ opponents:
     y: -1934.2
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-46.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Innkeep_(Harviken)
     imageVerified: true
     modTexture: harviken_inn.png
     matchMethod: exact-script-tag
@@ -1004,7 +1005,7 @@ opponents:
     y: -1924.6
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-47.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Blacksmith_(Harviken)
     imageVerified: true
     modTexture: harviken_smith.png
     matchMethod: exact-script-tag
@@ -1025,7 +1026,7 @@ opponents:
     y: 61.7
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-48.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Merchant_(Larvik)
     imageVerified: true
     modTexture: larvik_merch.png
     matchMethod: exact-script-tag
@@ -1046,7 +1047,7 @@ opponents:
     y: 70.6
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-49.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Innkeep_(Larvik)
     imageVerified: true
     modTexture: larvik_inn.png
     matchMethod: exact-script-tag
@@ -1067,8 +1068,8 @@ opponents:
     y: 81.8
   vanillaWinFactKnownMissing: true
   portrait:
-    file: null
-    sourcePage: null
+    file: Assets/OpponentPortraits/gwm-pin-50.png
+    sourcePage: https://witcher.fandom.com/wiki/Blacksmith_(Larvik)
     imageVerified: false
     modTexture: null
     matchMethod: null
@@ -1089,7 +1090,7 @@ opponents:
     y: 64.6
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-51.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Armorer_(Larvik)
     imageVerified: true
     modTexture: larvik_armor.png
     matchMethod: exact-script-tag
@@ -1110,7 +1111,7 @@ opponents:
     y: 1915.4
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-52.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Blacksmith_(Urialla_Harbor)
     imageVerified: true
     modTexture: urialla_smith.png
     matchMethod: exact-script-tag
@@ -1131,7 +1132,7 @@ opponents:
     y: 1909.6
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-53.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Innkeep_(Urialla_Harbor)
     imageVerified: true
     modTexture: urialla_inn.png
     matchMethod: exact-script-tag
@@ -1152,7 +1153,7 @@ opponents:
     y: 1873.0
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-54.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Armorer_(Urialla_Harbor)
     imageVerified: true
     modTexture: urialla_armor.png
     matchMethod: exact-script-tag
@@ -1173,7 +1174,7 @@ opponents:
     y: 1424.8
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-55.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Smith_(Svorlag)
     imageVerified: true
     modTexture: svorlag_smith.png
     matchMethod: exact-script-tag
@@ -1194,7 +1195,7 @@ opponents:
     y: 1377.2
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-56.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Merchant_(Svorlag)
     imageVerified: true
     modTexture: svorlag_merch.png
     matchMethod: exact-script-tag
@@ -1215,7 +1216,7 @@ opponents:
     y: 1377.6
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-57.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Innkeep_(Svorlag)
     imageVerified: true
     modTexture: svorlag_inn.png
     matchMethod: exact-script-tag
@@ -1236,7 +1237,7 @@ opponents:
     y: -971.1
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-58.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Smith_(Kaer_Muire)
     imageVerified: true
     modTexture: muire_smith.png
     matchMethod: exact-script-tag
@@ -1257,7 +1258,7 @@ opponents:
     y: -975.8
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-59.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Armorer_(Kaer_Muire)
     imageVerified: true
     modTexture: muire_armor.png
     matchMethod: exact-script-tag
@@ -1266,10 +1267,10 @@ opponents:
   pinId: 60
   gameWorld: skellige
   region: Skellige
-  location: Holmstein Port
+  location: Holmstein's Port
   locationStatus: inferred
-  displayName: Shopkeeper — Holmstein Port
-  profession: Shopkeeper
+  displayName: Merchant — Holmstein's Port
+  profession: Merchant
   npcId: holmestein_trader_01
   cardId: null
   category: merchant-random-pool
@@ -1278,7 +1279,7 @@ opponents:
     y: -1052.6
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-60.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Merchant_(Holmstein's_Port)
     imageVerified: true
     modTexture: holmstein_smith.png
     matchMethod: exact-script-tag
@@ -1299,7 +1300,7 @@ opponents:
     y: -274.4
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-61.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Ilge
     imageVerified: true
     modTexture: ilge.png
     matchMethod: exact-script-tag
@@ -1320,7 +1321,7 @@ opponents:
     y: -199.7
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-62.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Sigurd
     imageVerified: true
     modTexture: sigurd.png
     matchMethod: exact-script-tag
@@ -1341,7 +1342,7 @@ opponents:
     y: -137.7
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-63.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Blacksmith_(Fayrlund)
     imageVerified: true
     modTexture: fayrlund_smith.png
     matchMethod: exact-script-tag
@@ -1362,7 +1363,7 @@ opponents:
     y: -148.5
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-64.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Merchant_(Fayrlund)
     imageVerified: true
     modTexture: fayrlund_merch.png
     matchMethod: exact-script-tag
@@ -1383,7 +1384,7 @@ opponents:
     y: -738.6
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-65.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Merchant_(Fyresdal)
     imageVerified: true
     modTexture: fyresdal_merch.png
     matchMethod: exact-script-tag
@@ -1405,7 +1406,7 @@ opponents:
   vanillaWinFactKnownMissing: true
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-66.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Smith_(Fyresdal)
     imageVerified: true
     modTexture: fyresdal_smith.png
     matchMethod: exact-script-tag
@@ -1426,7 +1427,7 @@ opponents:
     y: 757.5
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-67.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Yanne
     imageVerified: true
     modTexture: trolde_smith.png
     matchMethod: exact-script-tag
@@ -1435,7 +1436,7 @@ opponents:
   pinId: 68
   gameWorld: skellige
   region: Skellige
-  location: Kaer Trolde castle
+  location: Kaer Trolde keep
   locationStatus: reference-or-inferred-name
   displayName: Armorer — Kaer Trolde castle
   profession: Armorer
@@ -1447,7 +1448,7 @@ opponents:
     y: 756.7
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-68.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Armorer_(Kaer_Trolde_keep)
     imageVerified: true
     modTexture: trolde_armor.png
     matchMethod: exact-script-tag
@@ -1468,7 +1469,7 @@ opponents:
     y: 25.3
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-69.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Merchant_(Blandare)
     imageVerified: true
     modTexture: blandare_merch.png
     matchMethod: exact-script-tag
@@ -1489,7 +1490,7 @@ opponents:
     y: 576.1
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-70.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Herbalist_(Kaer_Trolde)
     imageVerified: true
     modTexture: trolde_herb.png
     matchMethod: exact-script-tag
@@ -1540,9 +1541,9 @@ opponents:
   pinId: 73
   gameWorld: bob
   region: Toussaint
-  location: Beauclair — west
+  location: Beauclair — The Pheasantry
   locationStatus: reference-or-inferred-name
-  displayName: Innkeeper — Beauclair — west
+  displayName: Innkeeper — The Pheasantry
   profession: Innkeeper
   npcId: shop_37_city_west_innkeeper
   cardId: null
@@ -1552,7 +1553,7 @@ opponents:
     y: -1396.8
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-73.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Innkeep_(The_Pheasantry)
     imageVerified: true
     modTexture: pheasantry_inn.png
     matchMethod: exact-script-tag
@@ -1573,7 +1574,7 @@ opponents:
     y: -1413.2
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-74.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Herbalist_(Beauclair)
     imageVerified: true
     modTexture: bob_herb.png
     matchMethod: exact-script-tag
@@ -1584,8 +1585,8 @@ opponents:
   region: Toussaint
   location: Beauclair
   locationStatus: inferred
-  displayName: Shopkeeper — Beauclair
-  profession: Shopkeeper
+  displayName: Rafael de Surmann
+  profession: Ducal Camerlengo
   npcId: shop_cammerlengo
   cardId: null
   category: merchant-fixed-card
@@ -1594,7 +1595,7 @@ opponents:
     y: -1321.8
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-75.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Rafael_de_Surmann
     imageVerified: true
     modTexture: bob_cammerlengo.png
     matchMethod: exact-script-tag
@@ -1603,10 +1604,10 @@ opponents:
   pinId: 76
   gameWorld: bob
   region: Toussaint
-  location: Beauclair — west
+  location: Beauclair — Perfumery
   locationStatus: reference-or-inferred-name
-  displayName: Alchemist — Beauclair — west
-  profession: Alchemist
+  displayName: Merchant — Perfumery
+  profession: Merchant (alchemy supplies)
   npcId: shop_41_city_west_alchemist
   cardId: null
   category: merchant-fixed-card
@@ -1615,7 +1616,7 @@ opponents:
     y: -1355.7
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-76.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Merchant_(Perfumery)
     imageVerified: true
     modTexture: bob_perfumer.png
     matchMethod: exact-script-tag
@@ -1624,10 +1625,10 @@ opponents:
   pinId: 77
   gameWorld: bob
   region: Toussaint
-  location: Beauclair — east
+  location: Beauclair — Dupont & Sons
   locationStatus: reference-or-inferred-name
-  displayName: Shopkeeper — Beauclair — east
-  profession: Shopkeeper
+  displayName: Merchant — Dupont & Sons
+  profession: Merchant
   npcId: shop_45_city_east_merchant
   cardId: null
   category: merchant-fixed-card
@@ -1636,7 +1637,7 @@ opponents:
     y: -1413.7
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-77.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Merchant_(Dupont_%26_Sons)
     imageVerified: true
     modTexture: dupont_n_sons_merch.png
     matchMethod: exact-script-tag
@@ -1657,7 +1658,7 @@ opponents:
     y: -1415.5
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-78.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Armorer_(Hauteville)
     imageVerified: true
     modTexture: hauteville_armor.png
     matchMethod: exact-script-tag
@@ -1666,9 +1667,9 @@ opponents:
   pinId: 79
   gameWorld: bob
   region: Toussaint
-  location: Trappers’ village (internal name)
+  location: Francollarts
   locationStatus: inferred
-  displayName: Armorer — Trappers’ village (internal name)
+  displayName: Armorer — Francollarts
   profession: Armorer
   npcId: shop_32_trappers_village_armourer
   cardId: null
@@ -1677,8 +1678,8 @@ opponents:
     x: 35.7
     y: -1755.5
   portrait:
-    file: null
-    sourcePage: null
+    file: Assets/OpponentPortraits/gwm-pin-79.png
+    sourcePage: https://witcher.fandom.com/wiki/Armorer_(Francollarts)
     imageVerified: false
     modTexture: null
     matchMethod: null
@@ -1689,8 +1690,8 @@ opponents:
   region: Toussaint
   location: Beauclair — east
   locationStatus: reference-or-inferred-name
-  displayName: Wine merchant — Beauclair — east
-  profession: Wine merchant
+  displayName: Sommelier — Beauclair
+  profession: Sommelier
   npcId: shop_43_city_east_wine_merchant
   cardId: null
   category: merchant-fixed-card
@@ -1699,7 +1700,7 @@ opponents:
     y: -1359.6
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-80.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Sommelier
     imageVerified: true
     modTexture: jewels_inn.png
     matchMethod: exact-script-tag
@@ -1710,7 +1711,7 @@ opponents:
   region: Toussaint
   location: Beauclair
   locationStatus: inferred
-  displayName: Tailor — Beauclair
+  displayName: Pierre
   profession: Tailor
   npcId: q705_tailor
   cardId: null
@@ -1720,7 +1721,7 @@ opponents:
     y: -1270.7
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-81.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Pierre
     imageVerified: true
     modTexture: pierre.png
     matchMethod: exact-script-tag
@@ -1729,9 +1730,9 @@ opponents:
   pinId: 82
   gameWorld: bob
   region: Toussaint
-  location: Trappers’ village (internal name)
+  location: Francollarts
   locationStatus: inferred
-  displayName: Innkeeper — Trappers’ village (internal name)
+  displayName: Innkeeper — Francollarts
   profession: Innkeeper
   npcId: shop_31_trappers_village_innkeeper
   cardId: null
@@ -1741,7 +1742,7 @@ opponents:
     y: -1705.4
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-82.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Innkeep_(Francollarts)
     imageVerified: true
     modTexture: scarlet_cardinal_inn.png
     matchMethod: exact-script-tag
@@ -1761,8 +1762,8 @@ opponents:
     x: -226.1
     y: -1174.4
   portrait:
-    file: null
-    sourcePage: null
+    file: Assets/OpponentPortraits/gwm-pin-83.png
+    sourcePage: https://witcher.fandom.com/wiki/Madame_Isabelle
     imageVerified: false
     modTexture: null
     matchMethod: null
@@ -1783,7 +1784,7 @@ opponents:
     y: -1170.7
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-84.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Butcher
     imageVerified: true
     modTexture: bob_butcher.png
     matchMethod: exact-script-tag
@@ -1804,7 +1805,7 @@ opponents:
     y: -977.2
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-85.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Innkeep_(Tourney_Grounds)
     imageVerified: true
     modTexture: tourney_inn.png
     matchMethod: exact-script-tag
@@ -1825,7 +1826,7 @@ opponents:
     y: -983.0
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-86.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Barber_(Tourney_Grounds)
     imageVerified: true
     modTexture: tourney_barber.png
     matchMethod: exact-script-tag
@@ -1846,7 +1847,7 @@ opponents:
     y: -953.2
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-87.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Blacksmith_(Tourney_Grounds)
     imageVerified: true
     modTexture: tourney_smith.png
     matchMethod: exact-script-tag
@@ -1867,7 +1868,7 @@ opponents:
     y: -955.4
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-88.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Armorer_(Tourney_Grounds)
     imageVerified: true
     modTexture: tourney_armor.png
     matchMethod: exact-script-tag
@@ -1888,7 +1889,7 @@ opponents:
     y: -333.2
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-89.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Herbalist_(Castel_Ravello)
     imageVerified: true
     modTexture: ravello_herb.png
     matchMethod: exact-script-tag
@@ -1897,9 +1898,9 @@ opponents:
   pinId: 90
   gameWorld: bob
   region: Toussaint
-  location: Rafstmen village (internal name)
+  location: Flovive
   locationStatus: inferred
-  displayName: Innkeeper — Rafstmen village (internal name)
+  displayName: Innkeeper — Flovive
   profession: Innkeeper
   npcId: shop_19_rafstmen_village_innkeeper
   cardId: null
@@ -1909,7 +1910,7 @@ opponents:
     y: -1010.0
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-90.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Innkeep_(Flovive)
     imageVerified: true
     modTexture: flovive_inn.png
     matchMethod: exact-script-tag
@@ -1930,7 +1931,7 @@ opponents:
     y: -644.4
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-91.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Innkeep_(The_Cockatrice_Inn)
     imageVerified: true
     modTexture: cockatrice_inn.png
     matchMethod: exact-script-tag
@@ -1951,7 +1952,7 @@ opponents:
     y: 1546.4
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-92.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Merchant_(circus_troupe)
     imageVerified: true
     modTexture: circus_merch.png
     matchMethod: exact-script-tag
@@ -1961,8 +1962,9 @@ opponents:
   gameWorld: skellige
   region: Skellige
   location: null
-  locationStatus: unresolved
-  displayName: Herbalist — map pin 93
+  locationStatus: Kvalheim Isle
+  locationStatus: reference-or-inferred-name
+  displayName: Herbalist — Kvalheim Isle
   profession: Herbalist
   npcId: herbalist_community_herbalist_01
   cardId: null
@@ -1971,8 +1973,8 @@ opponents:
     x: 530.5
     y: -192.6
   portrait:
-    file: null
-    sourcePage: null
+    file: Assets/OpponentPortraits/gwm-pin-93.png
+    sourcePage: https://witcher.fandom.com/wiki/Herbalist_(Kvalheim_Isle)
     imageVerified: false
     modTexture: null
     matchMethod: null
@@ -1992,8 +1994,8 @@ opponents:
     x: -67.2
     y: 656.2
   portrait:
-    file: null
-    sourcePage: null
+    file: Assets/OpponentPortraits/gwm-pin-94.png
+    sourcePage: https://witcher.fandom.com/wiki/Merchant_(Kaer_Trolde_Harbor)
     imageVerified: false
     modTexture: null
     matchMethod: null
@@ -2013,8 +2015,8 @@ opponents:
     x: 112.5
     y: 47.3
   portrait:
-    file: null
-    sourcePage: null
+    file: Assets/OpponentPortraits/gwm-pin-95.png
+    sourcePage: https://witcher.fandom.com/wiki/Merchant_(Rannvaig)
     imageVerified: false
     modTexture: null
     matchMethod: null
@@ -2023,10 +2025,10 @@ opponents:
   pinId: 98
   gameWorld: novigrad
   region: Novigrad
-  location: Toderas (internal name)
+  location: Farcorners
   locationStatus: inferred
-  displayName: Shopkeeper — Toderas (internal name)
-  profession: Shopkeeper
+  displayName: Merchant — Farcorners (unavailable)
+  profession: Merchant
   npcId: toderas_village_trader_01
   cardId: null
   category: merchant-random-pool
@@ -2034,8 +2036,8 @@ opponents:
     x: 631.5
     y: 1554.6
   portrait:
-    file: null
-    sourcePage: null
+    file: Assets/OpponentPortraits/gwm-pin-98.png
+    sourcePage: https://witcher.fandom.com/wiki/Merchant_(Farcorners)
     imageVerified: false
     modTexture: null
     matchMethod: null
@@ -2056,7 +2058,7 @@ opponents:
     y: 535.8
   portrait:
     file: Assets/OpponentPortraits/gwm-pin-99.png
-    sourcePage: null
+    sourcePage: https://witcher.fandom.com/wiki/Innkeep_(Inn_at_the_Crossroads)
     imageVerified: true
     modTexture: crossroads_inn.png
     matchMethod: named-quest-opponent-script-tag
