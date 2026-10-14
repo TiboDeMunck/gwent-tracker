@@ -1,5 +1,22 @@
 # Changelog
 
+## [2.0.0] - 2026-10-14
+
+### New Features
+
+- Add a dedicated Gwent opponents checklist with 96 documented opponents
+- Automatically detect completed opponents from the active Witcher 3 save
+- Show the card awarded by an opponent when the reward can be identified reliably
+- Allow opponent completion to be corrected manually, with overrides saved separately for each playthrough
+- Add opponent search and status filters, plus overall and regional completion summaries
+
+### Enhancements
+
+- Show portraits, names, professions, and detailed locations for opponents
+- Bundle card artwork and opponent portraits with the application for offline use
+- Split card collection and opponent tracking into dedicated tabs
+- Refresh the application screenshots and project documentation
+
 ## [1.5.1] - 2023-02-24
 
 ### Enhancements
@@ -120,7 +137,8 @@
 
 ## [0.1.0-alpha] - 2017-01-26
 
-[unreleased]: https://github.com/rfvgyhn/gwent-tracker/compare/v1.5.1...HEAD
+[unreleased]: https://github.com/rfvgyhn/gwent-tracker/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/rfvgyhn/gwent-tracker/compare/v1.5.1...v2.0.0
 [1.5.1]: https://github.com/rfvgyhn/gwent-tracker/compare/v1.5.0...v1.5.1
 [1.5.0]: https://github.com/rfvgyhn/gwent-tracker/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/rfvgyhn/gwent-tracker/compare/v1.3.0...v1.4.0

@@ -35,11 +35,12 @@ public class GwentOpponentDatasetTests
         Assert.Equal(35, fergus.PinId);
         Assert.Equal("Crow's Perch", fergus.Location);
 
-        var duplicateRoles = opponents
-            .Where(x => x.Location == "Novigrad — marketplace" && x.Profession == "Shopkeeper")
+        var marketplaceOpponents = opponents
+            .Where(x => x.Location == "Novigrad — marketplace")
             .ToList();
-        Assert.True(duplicateRoles.Count >= 2);
-        Assert.Equal(duplicateRoles.Count, duplicateRoles.Select(x => x.Id).Distinct().Count());
+        Assert.Equal(2, marketplaceOpponents.Count);
+        Assert.Equal(new[] { 2, 13 }, marketplaceOpponents.Select(x => x.PinId).OrderBy(x => x));
+        Assert.Equal(marketplaceOpponents.Count, marketplaceOpponents.Select(x => x.Id).Distinct().Count());
     }
 
     [Fact]
@@ -55,7 +56,7 @@ public class GwentOpponentDatasetTests
     }
 
     [Fact]
-    public async Task PortraitReferencesMapKnownOpponentsAndLeaveUnknownPortraitsEmpty()
+    public async Task PortraitReferencesMapEveryOpponent()
     {
         var opponents = (await GwentOpponentRepository.LoadAsync()).Opponents;
 
@@ -72,12 +73,11 @@ public class GwentOpponentDatasetTests
         Assert.Equal("Shopkeeper", merchantViewModel.PreviewDisplayName);
         Assert.Equal("Blackbough, Velen", merchantViewModel.LocationAndRegion);
 
-        var withoutPortrait = Assert.Single(opponents, x => x.Id == "gwm-pin-25");
-        var missingViewModel = new GwentOpponentViewModel(withoutPortrait);
-        Assert.Null(withoutPortrait.Portrait.File);
-        Assert.Null(missingViewModel.PortraitResourceUri);
-        Assert.True(missingViewModel.IsPortraitMissing);
+        var ottoBamber = Assert.Single(opponents, x => x.Id == "gwm-pin-25");
+        var ottoBamberViewModel = new GwentOpponentViewModel(ottoBamber);
+        Assert.Equal("Assets/OpponentPortraits/gwm-pin-25.png", ottoBamber.Portrait.File);
+        Assert.Equal("avares://gwenttracker/Assets/OpponentPortraits/gwm-pin-25.png", ottoBamberViewModel.PortraitResourceUri.AbsoluteUri);
 
-        Assert.Equal(88, opponents.Count(x => x.Portrait?.File != null));
+        Assert.Equal(96, opponents.Count(x => x.Portrait?.File != null));
     }
 }

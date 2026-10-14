@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <OutputType>WinExe</OutputType>
-    <VersionPrefix>1.5.1</VersionPrefix>
+    <VersionPrefix>2.0.0</VersionPrefix>
     <LangVersion>Latest</LangVersion>
       <ApplicationIcon>Assets/collector.ico</ApplicationIcon>
   </PropertyGroup>

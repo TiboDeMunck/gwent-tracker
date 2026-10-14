@@ -29,11 +29,10 @@ coverage:
   whiteOrchardIncluded: false
   locationCaveat: Readable locations are partly sourced from Witcher Wiki article mappings and still require confirmation
     against game coordinates for ambiguous NPCs; see REVIEW_NOTES.md.
-  portraitImagesPackaged: 88
+  portraitImagesPackaged: 96
   portraitReferencePages: 94
-  portraitNote: 94 Wiki article mappings from user-provided review report; downloaded portrait files themselves are NOT bundled
-    in this YAML package. Prior extracted-mod image metadata remains preserved; newly assigned Wiki paths require copying
-    the downloaded PNGs.
+  portraitNote: All 96 opponent portraits are bundled. The 94 Wiki article mappings came from a user-provided review report;
+    prior extracted-mod image metadata remains preserved.
   portraitSourceImages: 135
 opponents:
 - id: gwm-pin-2
