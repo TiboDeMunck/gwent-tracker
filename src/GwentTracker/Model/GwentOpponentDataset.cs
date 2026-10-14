@@ -57,6 +57,7 @@ namespace GwentTracker.Model
     public class GwentOpponentPortrait
     {
         public string File { get; set; }
+        public string SourcePage { get; set; }
     }
 
     public class GwentOpponentPosition

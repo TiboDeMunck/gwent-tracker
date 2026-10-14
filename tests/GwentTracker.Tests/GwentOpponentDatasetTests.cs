@@ -63,6 +63,9 @@ public class GwentOpponentDatasetTests
         var bloodyBaron = Assert.Single(opponents, x => x.Id == "gwm-pin-36");
         var baronViewModel = new GwentOpponentViewModel(bloodyBaron);
         Assert.Equal("Assets/OpponentPortraits/gwm-pin-36.png", bloodyBaron.Portrait.File);
+        Assert.Equal("https://witcher.fandom.com/wiki/Phillip_Strenger", baronViewModel.SourcePage);
+        Assert.True(baronViewModel.HasSourcePage);
+        Assert.Equal("Quest card", baronViewModel.CardType);
         Assert.Equal("avares://gwenttracker/Assets/OpponentPortraits/gwm-pin-36.png", baronViewModel.PortraitResourceUri.AbsoluteUri);
         Assert.Equal("Bloody Baron", baronViewModel.PreviewDisplayName);
         Assert.Equal("Crow's Perch, Velen", baronViewModel.LocationAndRegion);
@@ -70,6 +73,7 @@ public class GwentOpponentDatasetTests
         var blackboughMerchant = Assert.Single(opponents, x => x.Id == "gwm-pin-31");
         var merchantViewModel = new GwentOpponentViewModel(blackboughMerchant);
         Assert.Equal("Assets/OpponentPortraits/gwm-pin-31.png", blackboughMerchant.Portrait.File);
+        Assert.Equal("Random card", merchantViewModel.CardType);
         Assert.Equal("Shopkeeper", merchantViewModel.PreviewDisplayName);
         Assert.Equal("Blackbough, Velen", merchantViewModel.LocationAndRegion);
 

@@ -1,15 +1,18 @@
 using System;
+using System.Diagnostics;
 using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using Avalonia.Controls;
 using Avalonia.Input;
+using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.ReactiveUI;
 using Avalonia.Threading;
 using GwentTracker.ViewModels;
 using ReactiveUI;
+using Serilog;
 
 namespace GwentTracker.Views
 {
@@ -27,6 +30,7 @@ namespace GwentTracker.Views
         private Grid SelectedCard => this.FindControl<Grid>("SelectedCard");
         private Button AddFilter => this.FindControl<Button>("AddFilter");
         private Button ClearOpponentOverrides => this.FindControl<Button>("ClearOpponentOverrides");
+        private Button OpenOpponentSource => this.FindControl<Button>("OpenOpponentSource");
         private TextBlock Status => this.FindControl<TextBlock>("Status");
         private TextBlock OpponentSummary => this.FindControl<TextBlock>("OpponentSummary");
         
@@ -51,6 +55,12 @@ namespace GwentTracker.Views
                 this.WhenAnyValue(v => v.ViewModel.LoadCards).SelectMany(x => x.Execute()).Subscribe().DisposeWith(d);
                 this.BindCommand(ViewModel, vm => vm.AddFilter, v => v.AddFilter).DisposeWith(d);
                 this.BindCommand(ViewModel, vm => vm.ClearOpponentOverrides, v => v.ClearOpponentOverrides).DisposeWith(d);
+                Observable
+                    .FromEventPattern<EventHandler<RoutedEventArgs>, RoutedEventArgs>(
+                        handler => OpenOpponentSource.Click += handler,
+                        handler => OpenOpponentSource.Click -= handler)
+                    .Subscribe(_ => OpenSelectedOpponentSource())
+                    .DisposeWith(d);
                 ViewModel.Notifications.Subscribe(Notify).DisposeWith(d);
                 Observable
                     .FromEventPattern<EventHandler<KeyEventArgs>, KeyEventArgs>(
@@ -71,6 +81,30 @@ namespace GwentTracker.Views
         }
 
         private IDisposable _timer;
+
+        private void OpenSelectedOpponentSource()
+        {
+            var sourcePage = ViewModel?.SelectedOpponent?.SourcePage;
+            if (!Uri.TryCreate(sourcePage, UriKind.Absolute, out var sourceUri) ||
+                (sourceUri.Scheme != Uri.UriSchemeHttp && sourceUri.Scheme != Uri.UriSchemeHttps))
+            {
+                return;
+            }
+
+            try
+            {
+                Process.Start(new ProcessStartInfo(sourceUri.AbsoluteUri)
+                {
+                    UseShellExecute = true
+                });
+            }
+            catch (Exception exception)
+            {
+                Log.Error(exception, "Unable to open opponent source page {sourcePage}", sourceUri);
+                Notify("Unable to open source page");
+            }
+        }
+
         private void Notify(string message)
         {
             _timer?.Dispose();

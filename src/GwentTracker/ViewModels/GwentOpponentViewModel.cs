@@ -45,6 +45,17 @@ namespace GwentTracker.ViewModels
             ? string.Empty
             : Profession;
         public string LocationAndRegion => string.Join(", ", new[] { Location, Region });
+        public string CardType => Opponent.Category switch
+        {
+            "quest-fixed-card" => "Quest card",
+            "merchant-random-pool" => "Random card",
+            "merchant-fixed-card" => "Fixed card",
+            _ => "Unknown"
+        };
+        public string SourcePage => Opponent.Portrait?.SourcePage;
+        public bool HasSourcePage => Uri.TryCreate(SourcePage, UriKind.Absolute, out var sourceUri) &&
+                                     (sourceUri.Scheme == Uri.UriSchemeHttp ||
+                                      sourceUri.Scheme == Uri.UriSchemeHttps);
         public Uri PortraitResourceUri => OpponentPortraitLoader.ResolveResourceUri(Opponent.Portrait?.File);
         public IBitmap PortraitImage => _portraitImage.Value;
         public bool IsPortraitMissing => PortraitImage == null;

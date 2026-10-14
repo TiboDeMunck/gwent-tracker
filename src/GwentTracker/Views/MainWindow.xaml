@@ -13,7 +13,7 @@
         x:CompileBindings="True"
         Icon="/Assets/collector.ico"
         Title="GwentTracker"
-        Width="1100"
+        Width="1200"
         Height="925">
 
     <Window.Styles>
@@ -31,6 +31,17 @@
         </Style>
         <Style Selector="Button.pillRemove:pointerover Path">
             <Setter Property="Fill" Value="#555555" />
+        </Style>
+        <Style Selector="Button.externalLink">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="2" />
+        </Style>
+        <Style Selector="Button.externalLink Path">
+            <Setter Property="Fill" Value="#0078D4" />
+        </Style>
+        <Style Selector="Button.externalLink:pointerover Path">
+            <Setter Property="Fill" Value="#005A9E" />
         </Style>
         <Style Selector="DataGridRow:nth-child(odd)">
             <Setter Property="Background" Value="Transparent" />
@@ -75,9 +86,23 @@
                         </Border>
                     </Grid>
                     <StackPanel Margin="8 8 8 0">
-                        <TextBlock Text="{Binding SelectedOpponent.PreviewDisplayName}" FontWeight="Bold" TextWrapping="Wrap"/>
+                        <Grid ColumnDefinitions="*,Auto">
+                            <TextBlock Text="{Binding SelectedOpponent.PreviewDisplayName}" FontWeight="Bold" TextWrapping="Wrap"/>
+                            <Button Grid.Column="1" x:Name="OpenOpponentSource" Classes="externalLink"
+                                    Width="22" Height="22" Margin="4 -3 0 0"
+                                    VerticalAlignment="Top"
+                                    IsVisible="{Binding SelectedOpponent.HasSourcePage}">
+                                <ToolTip.Tip>
+                                    <TextBlock Text="Open source page"/>
+                                </ToolTip.Tip>
+                                <Path Width="16" Height="16" Stretch="Uniform"
+                                      Data="M14,3 L14,5 L17.59,5 L7.76,14.83 L9.17,16.24 L19,6.41 L19,10 L21,10 L21,3 M19,19 L5,19 L5,5 L12,5 L12,3 L5,3 C3.89,3 3,3.9 3,5 L3,19 C3,20.1 3.9,21 5,21 L19,21 C20.1,21 21,20.1 21,19 L21,12 L19,12 L19,19 Z"/>
+                            </Button>
+                        </Grid>
                         <TextBlock Text="{Binding SelectedOpponent.PreviewProfession}" FontSize="11" TextWrapping="Wrap"/>
                         <TextBlock Text="{Binding SelectedOpponent.LocationAndRegion}" FontSize="11" TextWrapping="Wrap"/>
+                        <TextBlock Text="{Binding SelectedOpponent.CardType, StringFormat='Card type: {0}'}"
+                                   FontSize="11" Margin="0 4 0 0" TextWrapping="Wrap"/>
                         <TextBlock Text="{Binding SelectedOpponent.CardWon, StringFormat='Card won: {0}'}"
                                    IsVisible="{Binding SelectedOpponent.HasCardWon}" FontSize="11" Margin="0 4 0 0" TextWrapping="Wrap"/>
                     </StackPanel>
